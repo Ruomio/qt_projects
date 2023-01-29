@@ -1,0 +1,9 @@
+/home/papillon/Documents/All_Code/Qt_projeces/build-widget_demo-unknown-Debug/CMakeFiles/widget_demo.dir
+/home/papillon/Documents/All_Code/Qt_projeces/build-widget_demo-unknown-Debug/CMakeFiles/edit_cache.dir
+/home/papillon/Documents/All_Code/Qt_projeces/build-widget_demo-unknown-Debug/CMakeFiles/rebuild_cache.dir
+/home/papillon/Documents/All_Code/Qt_projeces/build-widget_demo-unknown-Debug/CMakeFiles/list_install_components.dir
+/home/papillon/Documents/All_Code/Qt_projeces/build-widget_demo-unknown-Debug/CMakeFiles/install.dir
+/home/papillon/Documents/All_Code/Qt_projeces/build-widget_demo-unknown-Debug/CMakeFiles/install/local.dir
+/home/papillon/Documents/All_Code/Qt_projeces/build-widget_demo-unknown-Debug/CMakeFiles/install/strip.dir
+/home/papillon/Documents/All_Code/Qt_projeces/build-widget_demo-unknown-Debug/CMakeFiles/widget_demo_autogen_timestamp_deps.dir
+/home/papillon/Documents/All_Code/Qt_projeces/build-widget_demo-unknown-Debug/CMakeFiles/widget_demo_autogen.dir

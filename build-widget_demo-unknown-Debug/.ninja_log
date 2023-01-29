@@ -1,0 +1,19 @@
+# ninja log v5
+5	218	1674977958610171015	widget_demo_autogen/timestamp	ae1f4aa382114ab6
+5	218	1674977958610171015	/home/papillon/Documents/All_Code/Qt_projeces/build-widget_demo-unknown-Debug/widget_demo_autogen/mocs_compilation.cpp	ae1f4aa382114ab6
+218	1946	1674977960340171025	CMakeFiles/widget_demo.dir/widget_demo_autogen/mocs_compilation.cpp.o	60a64bbd0034bfac
+5	218	1674977958610171015	widget_demo_autogen/mocs_compilation.cpp	ae1f4aa382114ab6
+5	218	1674977958610171015	/home/papillon/Documents/All_Code/Qt_projeces/build-widget_demo-unknown-Debug/widget_demo_autogen/timestamp	ae1f4aa382114ab6
+219	1999	1674977960390171025	CMakeFiles/widget_demo.dir/mainwindow.cpp.o	b2d289c03ea1d59a
+355	2134	1674964149300087923	CMakeFiles/widget_demo.dir/main.cpp.o	ba8667f58473dae9
+1636	1906	1674959526780060109	widget_demo	ced0fadf686b8a6f
+219	2387	1674977960780171028	CMakeFiles/widget_demo.dir/matview.cpp.o	c7b52ace2527b3ed
+3	301	1674979181250178371	widget_demo_autogen/timestamp	ae1f4aa382114ab6
+3	301	1674979181250178371	widget_demo_autogen/mocs_compilation.cpp	ae1f4aa382114ab6
+3	301	1674979181250178371	/home/papillon/Documents/All_Code/Qt_projeces/build-widget_demo-unknown-Debug/widget_demo_autogen/timestamp	ae1f4aa382114ab6
+3	301	1674979181250178371	/home/papillon/Documents/All_Code/Qt_projeces/build-widget_demo-unknown-Debug/widget_demo_autogen/mocs_compilation.cpp	ae1f4aa382114ab6
+302	2081	1674979183030178382	CMakeFiles/widget_demo.dir/main.cpp.o	658e054d66c74ee7
+302	2269	1674979183220178383	CMakeFiles/widget_demo.dir/widget_demo_autogen/mocs_compilation.cpp.o	631ab71ad0661ee4
+302	2320	1674979183270178383	CMakeFiles/widget_demo.dir/mainwindow.cpp.o	14e0af008e143641
+302	2591	1674979183540178385	CMakeFiles/widget_demo.dir/matview.cpp.o	dc288d156906ac41
+2591	3139	1674979184080178388	widget_demo	af2e33a4f2c4a5bf
