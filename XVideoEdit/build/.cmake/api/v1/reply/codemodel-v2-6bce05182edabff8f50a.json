@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-df9e3d3a8dd39e278192.json",
+					"jsonFile" : "directory-.-Debug-d92a4c0a007300bf4a23.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "XVideoEdit::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-XVideoEdit-Debug-48612b74cd7e56a5604a.json",
+					"jsonFile" : "target-XVideoEdit-Debug-0c29205ae8fe6b21677e.json",
 					"name" : "XVideoEdit",
 					"projectIndex" : 0
 				},

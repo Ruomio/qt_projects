@@ -9,14 +9,23 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+#opencv
+set(OpenCV_DIR /usr/lib/opencv4)
+include_directories(${OpenCV_INCLUDE_DIRS})
+find_package(OpenCV REQUIRED)
+#end
+
+
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets OpenGLWidgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets OpenGLWidgets)
 
 set(PROJECT_SOURCES
         src/main.cpp
         src/xvideoui.cpp
         src/xvideoui.h
         src/xvideoui.ui
+        src/xvideowidget.h
+        src/xvideowidget.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -42,7 +51,11 @@ else()
     endif()
 endif()
 
-target_link_libraries(XVideoEdit PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+# opencv
+link_directories(${OpenCV_LIBRARY_DIRS})
+#
+
+target_link_libraries(XVideoEdit PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::OpenGLWidgets ${OpenCV_LIBS})
 
 set_target_properties(XVideoEdit PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
