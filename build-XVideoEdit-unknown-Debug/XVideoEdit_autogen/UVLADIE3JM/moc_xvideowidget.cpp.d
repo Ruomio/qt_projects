@@ -115,6 +115,7 @@
   /usr/include/c++/12.2.1/bits/hash_bytes.h \
   /usr/include/c++/12.2.1/bits/invoke.h \
   /usr/include/c++/12.2.1/bits/ios_base.h \
+  /usr/include/c++/12.2.1/bits/istream.tcc \
   /usr/include/c++/12.2.1/bits/iterator_concepts.h \
   /usr/include/c++/12.2.1/bits/list.tcc \
   /usr/include/c++/12.2.1/bits/locale_classes.h \
@@ -148,6 +149,7 @@
   /usr/include/c++/12.2.1/bits/shared_ptr_atomic.h \
   /usr/include/c++/12.2.1/bits/shared_ptr_base.h \
   /usr/include/c++/12.2.1/bits/specfun.h \
+  /usr/include/c++/12.2.1/bits/sstream.tcc \
   /usr/include/c++/12.2.1/bits/std_abs.h \
   /usr/include/c++/12.2.1/bits/std_function.h \
   /usr/include/c++/12.2.1/bits/std_mutex.h \
@@ -184,14 +186,17 @@
   /usr/include/c++/12.2.1/bits/vector.tcc \
   /usr/include/c++/12.2.1/cctype \
   /usr/include/c++/12.2.1/cerrno \
+  /usr/include/c++/12.2.1/cfloat \
   /usr/include/c++/12.2.1/chrono \
   /usr/include/c++/12.2.1/climits \
   /usr/include/c++/12.2.1/clocale \
   /usr/include/c++/12.2.1/cmath \
   /usr/include/c++/12.2.1/compare \
+  /usr/include/c++/12.2.1/complex \
   /usr/include/c++/12.2.1/concepts \
   /usr/include/c++/12.2.1/cstddef \
   /usr/include/c++/12.2.1/cstdint \
+  /usr/include/c++/12.2.1/cstdio \
   /usr/include/c++/12.2.1/cstdlib \
   /usr/include/c++/12.2.1/cstring \
   /usr/include/c++/12.2.1/cwchar \
@@ -210,11 +215,13 @@
   /usr/include/c++/12.2.1/initializer_list \
   /usr/include/c++/12.2.1/ios \
   /usr/include/c++/12.2.1/iosfwd \
+  /usr/include/c++/12.2.1/istream \
   /usr/include/c++/12.2.1/iterator \
   /usr/include/c++/12.2.1/limits \
   /usr/include/c++/12.2.1/list \
   /usr/include/c++/12.2.1/map \
   /usr/include/c++/12.2.1/memory \
+  /usr/include/c++/12.2.1/mutex \
   /usr/include/c++/12.2.1/new \
   /usr/include/c++/12.2.1/numbers \
   /usr/include/c++/12.2.1/numeric \
@@ -224,6 +231,7 @@
   /usr/include/c++/12.2.1/pstl/glue_algorithm_defs.h \
   /usr/include/c++/12.2.1/pstl/glue_memory_defs.h \
   /usr/include/c++/12.2.1/pstl/glue_numeric_defs.h \
+  /usr/include/c++/12.2.1/sstream \
   /usr/include/c++/12.2.1/stdexcept \
   /usr/include/c++/12.2.1/streambuf \
   /usr/include/c++/12.2.1/string \
@@ -269,6 +277,32 @@
   /usr/include/linux/errno.h \
   /usr/include/linux/limits.h \
   /usr/include/locale.h \
+  /usr/include/opencv4/opencv2/core.hpp \
+  /usr/include/opencv4/opencv2/core/base.hpp \
+  /usr/include/opencv4/opencv2/core/bufferpool.hpp \
+  /usr/include/opencv4/opencv2/core/check.hpp \
+  /usr/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
+  /usr/include/opencv4/opencv2/core/cvdef.h \
+  /usr/include/opencv4/opencv2/core/cvstd.hpp \
+  /usr/include/opencv4/opencv2/core/cvstd.inl.hpp \
+  /usr/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
+  /usr/include/opencv4/opencv2/core/fast_math.hpp \
+  /usr/include/opencv4/opencv2/core/hal/interface.h \
+  /usr/include/opencv4/opencv2/core/mat.hpp \
+  /usr/include/opencv4/opencv2/core/mat.inl.hpp \
+  /usr/include/opencv4/opencv2/core/matx.hpp \
+  /usr/include/opencv4/opencv2/core/neon_utils.hpp \
+  /usr/include/opencv4/opencv2/core/operations.hpp \
+  /usr/include/opencv4/opencv2/core/optim.hpp \
+  /usr/include/opencv4/opencv2/core/ovx.hpp \
+  /usr/include/opencv4/opencv2/core/persistence.hpp \
+  /usr/include/opencv4/opencv2/core/saturate.hpp \
+  /usr/include/opencv4/opencv2/core/traits.hpp \
+  /usr/include/opencv4/opencv2/core/types.hpp \
+  /usr/include/opencv4/opencv2/core/utility.hpp \
+  /usr/include/opencv4/opencv2/core/version.hpp \
+  /usr/include/opencv4/opencv2/core/vsx_utils.hpp \
+  /usr/include/opencv4/opencv2/opencv_modules.hpp \
   /usr/include/pthread.h \
   /usr/include/qt6/QtCore/qalgorithms.h \
   /usr/include/qt6/QtCore/qanystringview.h \
@@ -407,6 +441,11 @@
   /usr/include/unistd.h \
   /usr/include/wchar.h \
   /usr/include/wctype.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include/emmintrin.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include/float.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include/mm_malloc.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include/mmintrin.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include/stdarg.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include/stdbool.h \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include/stddef.h
+  /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include/stddef.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include/xmmintrin.h

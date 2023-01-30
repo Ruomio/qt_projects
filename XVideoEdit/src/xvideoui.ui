@@ -50,6 +50,22 @@
     <bool>false</bool>
    </property>
   </widget>
+  <widget class="QSlider" name="playSlider">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>340</y>
+     <width>401</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>999</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>

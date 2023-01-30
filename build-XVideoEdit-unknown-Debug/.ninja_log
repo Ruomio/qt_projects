@@ -1,10 +1,11 @@
 # ninja log v5
-3	424	1675035894320002956	XVideoEdit_autogen/timestamp	2c0eabefde7c682e
-3	424	1675035894320002956	XVideoEdit_autogen/mocs_compilation.cpp	2c0eabefde7c682e
-3	424	1675035894320002956	/home/papillon/Documents/All_Code/Qt_projeces/build-XVideoEdit-unknown-Debug/XVideoEdit_autogen/timestamp	2c0eabefde7c682e
-425	5279	1675035899190002985	CMakeFiles/XVideoEdit.dir/src/xvideowidget.cpp.o	7c89cb743e7f0a74
-3	424	1675035894320002956	/home/papillon/Documents/All_Code/Qt_projeces/build-XVideoEdit-unknown-Debug/XVideoEdit_autogen/mocs_compilation.cpp	2c0eabefde7c682e
-424	4441	1675035898350002980	CMakeFiles/XVideoEdit.dir/XVideoEdit_autogen/mocs_compilation.cpp.o	99bfbe4c07671c89
-425	4449	1675035898360002980	CMakeFiles/XVideoEdit.dir/src/main.cpp.o	55fe5f37bad1d7e3
-425	5230	1675035899140002985	CMakeFiles/XVideoEdit.dir/src/xvideoui.cpp.o	a6279f0053f60972
-5280	6325	1675035900220002992	XVideoEdit	fe8b385ae8fd5bbd
+2	482	1675045342670059807	XVideoEdit_autogen/timestamp	2c0eabefde7c682e
+2	482	1675045342670059807	XVideoEdit_autogen/mocs_compilation.cpp	2c0eabefde7c682e
+2	482	1675045342670059807	/home/papillon/Documents/All_Code/Qt_projeces/build-XVideoEdit-unknown-Debug/XVideoEdit_autogen/timestamp	2c0eabefde7c682e
+2	482	1675045342670059807	/home/papillon/Documents/All_Code/Qt_projeces/build-XVideoEdit-unknown-Debug/XVideoEdit_autogen/mocs_compilation.cpp	2c0eabefde7c682e
+482	4362	1675045346560059831	CMakeFiles/XVideoEdit.dir/XVideoEdit_autogen/mocs_compilation.cpp.o	99bfbe4c07671c89
+482	4422	1675045346620059831	CMakeFiles/XVideoEdit.dir/src/main.cpp.o	55fe5f37bad1d7e3
+483	5111	1675045347310059835	CMakeFiles/XVideoEdit.dir/src/xvideothread.cpp.o	4b5c606f1b898d61
+483	5260	1675045347450059836	CMakeFiles/XVideoEdit.dir/src/xvideowidget.cpp.o	7c89cb743e7f0a74
+483	6036	1675045348230059841	CMakeFiles/XVideoEdit.dir/src/xvideoui.cpp.o	a6279f0053f60972
+6036	7018	1675045349200059847	XVideoEdit	3aaddb0181c39ad6
