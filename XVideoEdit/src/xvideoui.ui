@@ -13,6 +13,17 @@
   <property name="windowTitle">
    <string>XVideoUI</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">#XVideoUI{
+	background-color: rgb(53, 53, 53);
+}
+
+#openButton{	
+	background-color: rgb(200, 200, 200);
+}
+
+</string>
+  </property>
   <widget class="XVideoWidget" name="src1">
    <property name="geometry">
     <rect>
@@ -21,6 +32,22 @@
      <width>400</width>
      <height>340</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="openButton">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>370</y>
+     <width>51</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>打开</string>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
    </property>
   </widget>
  </widget>
@@ -32,5 +59,25 @@
   </customwidget>
  </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>openButton</sender>
+   <signal>clicked()</signal>
+   <receiver>XVideoUI</receiver>
+   <slot>Open()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>439</x>
+     <y>380</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>516</x>
+     <y>-18</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>Open()</slot>
+ </slots>
 </ui>

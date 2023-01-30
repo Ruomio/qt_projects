@@ -403,6 +403,12 @@
 	"HEADERS" : 
 	[
 		[
+			"/home/papillon/Documents/All_Code/Qt_projeces/XVideoEdit/src/xvideothread.h",
+			"MU",
+			"UVLADIE3JM/moc_xvideothread.cpp",
+			null
+		],
+		[
 			"/home/papillon/Documents/All_Code/Qt_projeces/XVideoEdit/src/xvideoui.h",
 			"MU",
 			"UVLADIE3JM/moc_xvideoui.cpp",
@@ -483,6 +489,11 @@
 	[
 		[
 			"/home/papillon/Documents/All_Code/Qt_projeces/XVideoEdit/src/main.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/papillon/Documents/All_Code/Qt_projeces/XVideoEdit/src/xvideothread.cpp",
 			"MU",
 			null
 		],

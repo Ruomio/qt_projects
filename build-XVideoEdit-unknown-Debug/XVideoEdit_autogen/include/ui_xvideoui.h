@@ -11,21 +11,42 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
+#include "/home/papillon/Documents/All_Code/Qt_projeces/XVideoEdit/src/xvideowidget.h"
 
 QT_BEGIN_NAMESPACE
 
 class Ui_XVideoUI
 {
 public:
+    XVideoWidget *src1;
+    QPushButton *openButton;
 
     void setupUi(QWidget *XVideoUI)
     {
         if (XVideoUI->objectName().isEmpty())
             XVideoUI->setObjectName("XVideoUI");
         XVideoUI->resize(800, 600);
+        XVideoUI->setStyleSheet(QString::fromUtf8("#XVideoUI{\n"
+"	background-color: rgb(53, 53, 53);\n"
+"}\n"
+"\n"
+"#openButton{	\n"
+"	background-color: rgb(200, 200, 200);\n"
+"}\n"
+"\n"
+""));
+        src1 = new XVideoWidget(XVideoUI);
+        src1->setObjectName("src1");
+        src1->setGeometry(QRect(10, 20, 400, 340));
+        openButton = new QPushButton(XVideoUI);
+        openButton->setObjectName("openButton");
+        openButton->setGeometry(QRect(420, 370, 51, 21));
+        openButton->setFlat(false);
 
         retranslateUi(XVideoUI);
+        QObject::connect(openButton, SIGNAL(clicked()), XVideoUI, SLOT(Open()));
 
         QMetaObject::connectSlotsByName(XVideoUI);
     } // setupUi
@@ -33,6 +54,7 @@ public:
     void retranslateUi(QWidget *XVideoUI)
     {
         XVideoUI->setWindowTitle(QCoreApplication::translate("XVideoUI", "XVideoUI", nullptr));
+        openButton->setText(QCoreApplication::translate("XVideoUI", "\346\211\223\345\274\200", nullptr));
     } // retranslateUi
 
 };

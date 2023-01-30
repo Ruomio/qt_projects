@@ -4,6 +4,8 @@ XVideoEdit_autogen/timestamp: \
   CMakeFiles/3.25.2/CMakeSystem.cmake \
   XVideoEdit_autogen/moc_predefs.h \
   /home/papillon/Documents/All_Code/Qt_projeces/XVideoEdit/src/main.cpp \
+  /home/papillon/Documents/All_Code/Qt_projeces/XVideoEdit/src/xvideothread.cpp \
+  /home/papillon/Documents/All_Code/Qt_projeces/XVideoEdit/src/xvideothread.h \
   /home/papillon/Documents/All_Code/Qt_projeces/XVideoEdit/src/xvideoui.cpp \
   /home/papillon/Documents/All_Code/Qt_projeces/XVideoEdit/src/xvideoui.h \
   /home/papillon/Documents/All_Code/Qt_projeces/XVideoEdit/src/xvideowidget.cpp \

@@ -26,6 +26,8 @@ set(PROJECT_SOURCES
         src/xvideoui.ui
         src/xvideowidget.h
         src/xvideowidget.cpp
+        src/xvideothread.h
+        src/xvideothread.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
