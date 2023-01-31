@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-30 07:51:29
  * @LastEditors: papillon 1065940593@qq.com
- * @LastEditTime: 2023-01-31 16:06:08
+ * @LastEditTime: 2023-01-31 17:53:32
  * @FilePath: /XVideoEdit/src/xvideothread.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -29,6 +29,8 @@ XVideoThread::~XVideoThread(){
     mutex.lock();
     isExit=true;
     mutex.unlock();
+    quit();
+    wait();
 }
 
 bool XVideoThread::Open(const std::string file){
@@ -68,15 +70,13 @@ void XVideoThread::run(){
         }
         // 显示图像
         ViewImage1(mat1);
-        // msleep(41);
         int s=0;
         s=1000/fps;
         if(!s){
-            // mutex.unlock();
             msleep(40);
         }
         mutex.unlock();
-        std::cout<<"------s :"<<s<<std::endl;
+        // std::cout<<"------s :"<<s<<std::endl;
         msleep(s);
     }
 }
