@@ -145,7 +145,7 @@ bool XVideoThread::StartSave(const std::string filename, int width, int height){
         width=cap1.get(CAP_PROP_FRAME_WIDTH);
     }
     if(height<=0){
-        width=cap1.get(CAP_PROP_FRAME_HEIGHT);
+        height=cap1.get(CAP_PROP_FRAME_HEIGHT);
     }
     this->isWrite=true;
     vw.open(filename,
