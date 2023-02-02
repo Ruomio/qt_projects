@@ -1,8 +1,8 @@
 /*
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-30 07:51:28
- * @LastEditors: papillon 1065940593@qq.com
- * @LastEditTime: 2023-02-02 12:59:09
+ * @LastEditors: Ruomio 1065940593@qq.com
+ * @LastEditTime: 2023-02-02 19:33:34
  * @FilePath: /XVideoEdit/src/xvideothread.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -43,6 +43,9 @@ public:
     bool Seek(int frame);
     // 时间位置
     bool Seek(double pos);
+    // 开始导出视频
+    bool StartSave(const std::string filename, int width=0, int height=0);
+    void StopSave();
 
 signals:
     void ViewImage1(cv::Mat mat);
@@ -56,6 +59,7 @@ protected:
     // 限定不能从外部生成对象
     XVideoThread();
     QMutex mutex;
+    bool isWrite=false;
 };
 
 #endif // XVIDEOTHREAD_H

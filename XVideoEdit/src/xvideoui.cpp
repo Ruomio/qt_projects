@@ -1,8 +1,8 @@
 /*
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-29 20:26:21
- * @LastEditors: papillon 1065940593@qq.com
- * @LastEditTime: 2023-02-02 13:06:38
+ * @LastEditors: Ruomio 1065940593@qq.com
+ * @LastEditTime: 2023-02-02 19:49:32
  * @FilePath: /XVideoEdit/src/xvideoui.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -13,6 +13,7 @@
 #include "xvideowidget.h"
 #include <opencv4/opencv2/core.hpp>
 #include <QFileDialog>
+#include <qdialog.h>
 #include <qfiledialog.h>
 #include <QMessageBox>
 #include <qobject.h>
@@ -88,5 +89,21 @@ void XVideoUI::Set(){
     
     if(ui->bright->value() >0 || ui->contrast->value() >1 ){
         XFilter::Get()->Add(XTask{XTASK_GAIN, {(double)ui->bright->value(),ui->contrast->value()}});
+    }
+}
+
+void XVideoUI::Export(){
+    static bool isExport = false;
+    if(isExport){
+        XVideoThread::Get()->StopSave();
+        isExport=false;
+        ui->exportButton->setText("start Export");
+        return;
+    }
+    QString name = QFileDialog::getSaveFileName(this,"save","out1.avi");
+    std::string filename = name.toLocal8Bit().data();
+    if(XVideoThread::Get()->StartSave(filename)){
+        isExport=true;
+        ui->exportButton->setText("stop Export");
     }
 }

@@ -1,8 +1,8 @@
 /*
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-30 07:51:29
- * @LastEditors: papillon 1065940593@qq.com
- * @LastEditTime: 2023-02-02 13:10:28
+ * @LastEditors: Ruomio 1065940593@qq.com
+ * @LastEditTime: 2023-02-02 22:09:27
  * @FilePath: /XVideoEdit/src/xvideothread.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -21,6 +21,7 @@ using namespace cv;
 
 static VideoCapture cap1;
 static bool isExit = false;
+static VideoWriter vw;
 
 XVideoThread::XVideoThread()
 {
@@ -76,6 +77,9 @@ void XVideoThread::run(){
         Mat dst = XFilter::Get()->Filter(mat1, Mat());
         // 显示处理后图像
         ViewDst(dst);
+        if(isWrite){
+            vw.write(dst);
+        }
         int s=0;
         s=1000/fps;
         if(!s){
@@ -127,4 +131,40 @@ bool XVideoThread::Seek(double pos){
     // 调用另一个Seek函数
     return Seek(frame);
     
+}
+
+bool XVideoThread::StartSave(const std::string filename, int width, int height){
+    std::cout<<"开始导出"<<std::endl;
+    mutex.lock();
+    if(!cap1.isOpened()){
+        mutex.unlock();
+        std::cout<<"视频未打开！"<<std::endl;
+        return false;
+    }
+    if(width<=0){
+        width=cap1.get(CAP_PROP_FRAME_WIDTH);
+    }
+    if(height<=0){
+        width=cap1.get(CAP_PROP_FRAME_HEIGHT);
+    }
+    this->isWrite=true;
+    vw.open(filename,
+        VideoWriter::fourcc('X', '2', '6', '4'),
+        this->fps,
+        Size(width,height)
+        );
+    if(!vw.isOpened()){
+        std::cout<<"start save failed!"<<std::endl;
+        mutex.unlock();
+        return false;
+    }
+    mutex.unlock();
+    return true;
+}
+
+void XVideoThread::StopSave(){
+    std::cout<<"停止导出"<<std::endl;
+    mutex.lock();
+    vw.release();
+    mutex.unlock();
 }
