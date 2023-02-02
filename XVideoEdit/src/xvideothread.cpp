@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-30 07:51:29
  * @LastEditors: Ruomio 1065940593@qq.com
- * @LastEditTime: 2023-02-02 22:09:27
+ * @LastEditTime: 2023-02-02 23:21:52
  * @FilePath: /XVideoEdit/src/xvideothread.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -68,23 +68,32 @@ void XVideoThread::run(){
         // 读一帧视频，解码并颜色转换
         if(!cap1.read(mat1)||mat1.empty()){
             mutex.unlock();
+            // 最后一帧，主动释放
+            if(isWrite){
+                StopSave();
+                // 传给前端信号
+                SaveEnd();
+            }
             msleep(5);
             continue;
         }
         // 显示图像1
-        ViewImage1(mat1);
+        if(!isWrite){
+            ViewImage1(mat1);
+        }
 
         Mat dst = XFilter::Get()->Filter(mat1, Mat());
         // 显示处理后图像
-        ViewDst(dst);
-        if(isWrite){
-            vw.write(dst);
+        if(!isWrite){
+            ViewDst(dst);
         }
         int s=0;
         s=1000/fps;
-        if(!s){
-            msleep(40);
+        if(isWrite){
+            s=0;
+            vw.write(dst);
         }
+        
         mutex.unlock();
         // std::cout<<"------s :"<<s<<std::endl;
         msleep(s);
@@ -135,6 +144,8 @@ bool XVideoThread::Seek(double pos){
 
 bool XVideoThread::StartSave(const std::string filename, int width, int height){
     std::cout<<"开始导出"<<std::endl;
+    // 从头开始导出
+    Seek(0);
     mutex.lock();
     if(!cap1.isOpened()){
         mutex.unlock();
@@ -166,5 +177,6 @@ void XVideoThread::StopSave(){
     std::cout<<"停止导出"<<std::endl;
     mutex.lock();
     vw.release();
+    isWrite=false;
     mutex.unlock();
 }

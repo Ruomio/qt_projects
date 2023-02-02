@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-30 07:51:28
  * @LastEditors: Ruomio 1065940593@qq.com
- * @LastEditTime: 2023-02-02 19:33:34
+ * @LastEditTime: 2023-02-02 22:41:11
  * @FilePath: /XVideoEdit/src/xvideothread.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -46,12 +46,14 @@ public:
     // 开始导出视频
     bool StartSave(const std::string filename, int width=0, int height=0);
     void StopSave();
+    
 
 signals:
     void ViewImage1(cv::Mat mat);
     
     void ViewDst(cv::Mat mat);
 
+    void SaveEnd();
 
 
 

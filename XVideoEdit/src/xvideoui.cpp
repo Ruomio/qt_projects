@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-29 20:26:21
  * @LastEditors: Ruomio 1065940593@qq.com
- * @LastEditTime: 2023-02-02 19:49:32
+ * @LastEditTime: 2023-02-02 23:24:21
  * @FilePath: /XVideoEdit/src/xvideoui.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -23,6 +23,7 @@
 using namespace std;
 
 static bool pressSlider=false;
+static bool isExport = false;
 
 XVideoUI::XVideoUI(QWidget *parent)
     : QWidget(parent)
@@ -43,6 +44,12 @@ XVideoUI::XVideoUI(QWidget *parent)
         SIGNAL(ViewDst(cv::Mat)),
         ui->dst,
         SLOT(SetImage(cv::Mat))
+    );
+    // 导出完成
+    QObject::connect(XVideoThread::Get(),
+        SIGNAL(SaveEnd()),
+        this,
+        SLOT(ExprotEnd())
     );
 
     // 定时器
@@ -93,7 +100,7 @@ void XVideoUI::Set(){
 }
 
 void XVideoUI::Export(){
-    static bool isExport = false;
+    
     if(isExport){
         XVideoThread::Get()->StopSave();
         isExport=false;
@@ -106,4 +113,9 @@ void XVideoUI::Export(){
         isExport=true;
         ui->exportButton->setText("stop Export");
     }
+}
+
+void XVideoUI::ExprotEnd(){
+    isExport=false;
+    ui->exportButton->setText("start Export");
 }
