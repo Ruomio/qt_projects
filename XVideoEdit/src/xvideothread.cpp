@@ -2,11 +2,13 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-30 07:51:29
  * @LastEditors: papillon 1065940593@qq.com
- * @LastEditTime: 2023-01-31 17:53:32
+ * @LastEditTime: 2023-02-02 13:10:28
  * @FilePath: /XVideoEdit/src/xvideothread.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 #include "xvideothread.h"
+#include "XFilter.h"
+#include <opencv2/core/mat.hpp>
 #include <opencv2/videoio.hpp>
 #include <opencv4/opencv2/imgcodecs.hpp>
 #include <opencv4/opencv2/highgui.hpp>
@@ -29,8 +31,8 @@ XVideoThread::~XVideoThread(){
     mutex.lock();
     isExit=true;
     mutex.unlock();
-    quit();
     wait();
+    quit();
 }
 
 bool XVideoThread::Open(const std::string file){
@@ -68,8 +70,12 @@ void XVideoThread::run(){
             msleep(5);
             continue;
         }
-        // 显示图像
+        // 显示图像1
         ViewImage1(mat1);
+
+        Mat dst = XFilter::Get()->Filter(mat1, Mat());
+        // 显示处理后图像
+        ViewDst(dst);
         int s=0;
         s=1000/fps;
         if(!s){

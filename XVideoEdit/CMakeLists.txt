@@ -28,6 +28,10 @@ set(PROJECT_SOURCES
         src/xvideowidget.cpp
         src/xvideothread.h
         src/xvideothread.cpp
+        src/XImagePro.h
+        src/XImagePro.cpp
+        src/XFilter.h
+        src/XFilter.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
