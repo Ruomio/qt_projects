@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-29 20:26:21
  * @LastEditors: Ruomio 1065940593@qq.com
- * @LastEditTime: 2023-02-02 23:24:21
+ * @LastEditTime: 2023-02-03 10:43:27
  * @FilePath: /XVideoEdit/src/xvideoui.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -54,6 +54,10 @@ XVideoUI::XVideoUI(QWidget *parent)
 
     // 定时器
     startTimer(43);
+    // 默认隐藏暂停按键
+    ui->pauseButton->hide();
+    // 默认暂停
+    Pause();
 }
 
 XVideoUI::~XVideoUI()
@@ -118,4 +122,21 @@ void XVideoUI::Export(){
 void XVideoUI::ExprotEnd(){
     isExport=false;
     ui->exportButton->setText("start Export");
+}
+
+void XVideoUI::Play(){
+    // 未打开视频文件时按钮不响应
+    if(!XVideoThread::Get()->IsGetfile()){
+        return;
+    }
+    ui->pauseButton->show();
+    // 将暂停建位置移动到播放键
+    ui->pauseButton->setGeometry(ui->playButton->geometry());
+    XVideoThread::Get()->Play();
+    ui->playButton->hide();
+}
+void XVideoUI::Pause(){
+    ui->playButton->show();
+    XVideoThread::Get()->Pause();
+    ui->pauseButton->hide();
 }

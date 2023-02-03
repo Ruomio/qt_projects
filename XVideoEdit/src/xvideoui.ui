@@ -24,6 +24,13 @@
 
 QLabel{
 	color:rgb(255,255,255);
+}
+#playButton{
+	image: url(:/img/resource/播放2.png);
+}
+#pauseButton{
+	
+	image: url(:/img/resource/暂停.png);
 }</string>
   </property>
   <widget class="XVideoWidget" name="src1">
@@ -168,6 +175,38 @@ QLabel{
     <bool>false</bool>
    </property>
   </widget>
+  <widget class="QPushButton" name="playButton">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>363</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pauseButton">
+   <property name="geometry">
+    <rect>
+     <x>34</x>
+     <y>363</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>
@@ -176,7 +215,9 @@ QLabel{
    <header>/home/papillon/Documents/All_Code/Qt_projeces/XVideoEdit/src/xvideowidget.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../XVideoUI.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>openButton</sender>
@@ -274,6 +315,38 @@ QLabel{
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>playButton</sender>
+   <signal>clicked()</signal>
+   <receiver>XVideoUI</receiver>
+   <slot>Play()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>17</x>
+     <y>373</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>18</x>
+     <y>-14</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pauseButton</sender>
+   <signal>clicked()</signal>
+   <receiver>XVideoUI</receiver>
+   <slot>Pause()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>44</x>
+     <y>370</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>108</x>
+     <y>-10</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>Open()</slot>
@@ -282,5 +355,7 @@ QLabel{
   <slot>SetPos(int)</slot>
   <slot>Set()</slot>
   <slot>Export()</slot>
+  <slot>Play()</slot>
+  <slot>Pause()</slot>
  </slots>
 </ui>

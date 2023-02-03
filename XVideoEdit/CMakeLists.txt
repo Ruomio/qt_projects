@@ -20,6 +20,7 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets OpenGLWidgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets OpenGLWidgets)
 
 set(PROJECT_SOURCES
+        XVideoUI.qrc
         src/main.cpp
         src/xvideoui.cpp
         src/xvideoui.h

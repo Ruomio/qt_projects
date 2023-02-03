@@ -2,14 +2,13 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-30 07:51:29
  * @LastEditors: Ruomio 1065940593@qq.com
- * @LastEditTime: 2023-02-02 23:21:52
+ * @LastEditTime: 2023-02-03 10:40:20
  * @FilePath: /XVideoEdit/src/xvideothread.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 #include "xvideothread.h"
 #include "XFilter.h"
 #include <opencv2/core/mat.hpp>
-#include <opencv2/videoio.hpp>
 #include <opencv4/opencv2/imgcodecs.hpp>
 #include <opencv4/opencv2/highgui.hpp>
 #include <opencv4/opencv2/imgproc.hpp>
@@ -65,6 +64,11 @@ void XVideoThread::run(){
             msleep(5);
             continue;
         }
+        if(!isPlay){
+            mutex.unlock();
+            msleep(5);
+            continue;
+        }
         // 读一帧视频，解码并颜色转换
         if(!cap1.read(mat1)||mat1.empty()){
             mutex.unlock();
@@ -98,6 +102,17 @@ void XVideoThread::run(){
         // std::cout<<"------s :"<<s<<std::endl;
         msleep(s);
     }
+}
+
+bool XVideoThread::IsGetfile(){
+    mutex.lock();
+    if(cap1.isOpened()){
+        mutex.unlock();
+        msleep(5);
+        return true;
+    }
+    mutex.unlock();
+    return false;
 }
 
 
@@ -178,5 +193,16 @@ void XVideoThread::StopSave(){
     mutex.lock();
     vw.release();
     isWrite=false;
+    mutex.unlock();
+}
+
+void XVideoThread::Play(){
+        mutex.lock();
+        isPlay=true;
+        mutex.unlock();
+}
+void XVideoThread::Pause(){
+    mutex.lock();
+    isPlay=false;
     mutex.unlock();
 }
