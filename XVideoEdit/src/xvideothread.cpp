@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-30 07:51:29
  * @LastEditors: Ruomio 1065940593@qq.com
- * @LastEditTime: 2023-02-03 10:40:20
+ * @LastEditTime: 2023-02-04 11:55:06
  * @FilePath: /XVideoEdit/src/xvideothread.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -173,12 +173,16 @@ bool XVideoThread::StartSave(const std::string filename, int width, int height){
     if(height<=0){
         height=cap1.get(CAP_PROP_FRAME_HEIGHT);
     }
+    // 改变状态
     this->isWrite=true;
+    // 自动导出，不用按播放键
+    this->isPlay=true;
+    
     vw.open(filename,
         VideoWriter::fourcc('X', '2', '6', '4'),
         this->fps,
         Size(width,height)
-        );
+    );
     if(!vw.isOpened()){
         std::cout<<"start save failed!"<<std::endl;
         mutex.unlock();
