@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-29 20:26:21
  * @LastEditors: Ruomio 1065940593@qq.com
- * @LastEditTime: 2023-02-04 11:02:11
+ * @LastEditTime: 2023-02-04 15:47:46
  * @FilePath: /XVideoEdit/src/xvideoui.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -100,6 +100,16 @@ void XVideoUI::Set(){
     
     if(ui->bright->value() >0 || ui->contrast->value() >1 ){
         XFilter::Get()->Add(XTask{XTASK_GAIN, {(double)ui->bright->value(),ui->contrast->value()}});
+    }
+
+    if(ui->rotateBox->currentIndex()==1){
+        XFilter::Get()->Add(XTask {XTASK_ROTATE90});
+    }
+    if(ui->rotateBox->currentIndex()==2){
+        XFilter::Get()->Add(XTask {XTASK_ROTATE180});
+    }
+    if(ui->rotateBox->currentIndex()==3){
+        XFilter::Get()->Add(XTask {XTASK_ROTATE270});
     }
 }
 

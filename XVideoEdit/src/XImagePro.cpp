@@ -1,12 +1,13 @@
 /*
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-02-01 08:37:25
- * @LastEditors: papillon 1065940593@qq.com
- * @LastEditTime: 2023-02-02 13:20:16
+ * @LastEditors: Ruomio 1065940593@qq.com
+ * @LastEditTime: 2023-02-04 12:04:04
  * @FilePath: /XVideoEdit/src/XImagePro.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 #include "XImagePro.h"
+#include <opencv2/core.hpp>
 
 XImagePro::XImagePro()
 {
@@ -38,4 +39,17 @@ cv::Mat XImagePro::Get(){
 void XImagePro::Gain(double bright, double contrast){
     if(dst.empty()) return;
     dst.convertTo(dst, -1, bright, contrast);
+}
+
+void XImagePro::Rotate90(){
+    if(dst.empty()) return;
+    cv::rotate(dst,dst,cv::ROTATE_90_CLOCKWISE);
+}
+void XImagePro::Rotate180(){
+    if(dst.empty()) return;
+    cv::rotate(dst,dst,cv::ROTATE_180);
+}
+void XImagePro::Rotate270(){
+    if(dst.empty()) return;
+    cv::rotate(dst,dst,cv::ROTATE_90_COUNTERCLOCKWISE);
 }

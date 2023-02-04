@@ -1,8 +1,8 @@
 /*
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-02-01 11:19:32
- * @LastEditors: papillon 1065940593@qq.com
- * @LastEditTime: 2023-02-02 12:03:53
+ * @LastEditors: Ruomio 1065940593@qq.com
+ * @LastEditTime: 2023-02-04 12:07:08
  * @FilePath: /XVideoEdit/src/XFilter.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -30,6 +30,15 @@ public:
                 case XTASK_GAIN:
                     // 亮度对比度调整
                     p.Gain(tasks[i].para[0], tasks[i].para[1]);
+                    break;
+                case XTASK_ROTATE90:
+                    p.Rotate90();
+                    break;
+                case XTASK_ROTATE180:
+                    p.Rotate180();
+                    break;
+                case XTASK_ROTATE270:
+                    p.Rotate270();
                     break;
                 default: break;
             }
