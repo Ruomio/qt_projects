@@ -1,14 +1,15 @@
 /*
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-30 07:51:29
- * @LastEditors: Ruomio 1065940593@qq.com
- * @LastEditTime: 2023-02-04 11:55:06
+ * @LastEditors: PapillonAz 1065940593@qq.com
+ * @LastEditTime: 2023-02-04 19:32:08
  * @FilePath: /XVideoEdit/src/xvideothread.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 #include "xvideothread.h"
 #include "XFilter.h"
 #include <opencv2/core/mat.hpp>
+#include <opencv2/videoio.hpp>
 #include <opencv4/opencv2/imgcodecs.hpp>
 #include <opencv4/opencv2/highgui.hpp>
 #include <opencv4/opencv2/imgproc.hpp>
@@ -45,6 +46,9 @@ bool XVideoThread::Open(const std::string file){
         return re;
     }
     
+    this->width = cap1.get(CAP_PROP_FRAME_WIDTH);
+    this->high = cap1.get(CAP_PROP_FRAME_HEIGHT);
+
     fps = cap1.get(CAP_PROP_FPS);
     if(fps <= 0) fps =25;
     return true;
@@ -177,7 +181,7 @@ bool XVideoThread::StartSave(const std::string filename, int width, int height){
     this->isWrite=true;
     // 自动导出，不用按播放键
     this->isPlay=true;
-    
+
     vw.open(filename,
         VideoWriter::fourcc('X', '2', '6', '4'),
         this->fps,

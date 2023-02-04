@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-02-01 11:19:32
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-04 18:01:33
+ * @LastEditTime: 2023-02-04 19:04:32
  * @FilePath: /XVideoEdit/src/XFilter.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -53,6 +53,12 @@ public:
                     break;
                 case XTask_RESIZE:
                     p.Resize(tasks[i].para[0], tasks[i].para[1]);
+                    break;
+                case XTask_PYDOWN:
+                    p.PyDown(tasks[i].para[0]);
+                    break;
+                case XTask_PYUP:
+                    p.PyUp(tasks[i].para[0]);
                     break;
                 
                 default: break;

@@ -1,8 +1,8 @@
 /*
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-30 07:51:28
- * @LastEditors: Ruomio 1065940593@qq.com
- * @LastEditTime: 2023-02-03 10:38:56
+ * @LastEditors: PapillonAz 1065940593@qq.com
+ * @LastEditTime: 2023-02-04 19:29:43
  * @FilePath: /XVideoEdit/src/xvideothread.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -33,6 +33,10 @@ public:
     void run();
     // 帧率
     int fps=0;
+
+    int width=0;
+    int high=0;
+
     //当前位置
     double GetPos();
 

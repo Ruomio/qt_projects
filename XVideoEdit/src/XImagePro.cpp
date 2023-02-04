@@ -2,12 +2,13 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-02-01 08:37:25
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-04 17:59:53
+ * @LastEditTime: 2023-02-04 19:01:27
  * @FilePath: /XVideoEdit/src/XImagePro.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 #include "XImagePro.h"
 #include <opencv2/core/types.hpp>
+#include <opencv2/imgproc.hpp>
 
 XImagePro::XImagePro()
 {
@@ -73,4 +74,17 @@ void XImagePro::FlipXY(){
 void XImagePro::Resize(int width, int high){
     if(dst.empty()) return;
     cv::resize(dst,dst, cv::Size(width,high));
+}
+
+void XImagePro::PyDown(int count){
+    if(dst.empty()) return;
+    for(int i=0;i<count; i++){
+        cv::pyrDown(dst, dst);
+    }
+}
+void XImagePro::PyUp(int count){
+    if(dst.empty()) return;
+    for(int i=0;i<count; i++){
+        cv::pyrUp(dst, dst);
+    }
 }
