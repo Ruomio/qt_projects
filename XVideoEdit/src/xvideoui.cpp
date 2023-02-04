@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-29 20:26:21
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-04 19:37:48
+ * @LastEditTime: 2023-02-04 22:47:47
  * @FilePath: /XVideoEdit/src/xvideoui.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -97,9 +97,22 @@ void XVideoUI::Set(){
     // 先清理
     XFilter::Get()->Clear();
 
+    // 视频裁剪
+    bool isClip = false;
+    int cx = ui->clip_x->value();
+    int cy = ui->clip_y->value();
+    int cw = ui->clip_width->value();
+    int ch = ui->clip_high->value();
+    if(cx+cy+cw+ch>0){
+        isClip=true;
+        XFilter::Get()->Add(XTask {XTask_CLIP,{(double)cx,(double)cy,(double)cw,(double)ch}});
+        // 变换尺寸与原尺寸一致
+        XFilter::Get()->Add(XTask{XTask_RESIZE,{(double)XVideoThread::Get()->width,(double )XVideoThread::Get()->high}});
+    }
+
     // 图像金字塔
     bool isPy = false;
-    if(ui->pydowm->value()>0){
+    if(!isClip && ui->pydowm->value()>0){
         isPy=true;
         XFilter::Get()->Add(XTask{XTask_PYDOWN,{(double)ui->pydowm->value()}});
         int w = XVideoThread::Get()->width;
@@ -111,7 +124,7 @@ void XVideoUI::Set(){
         ui->width->setValue(w);
         ui->high->setValue(h);
     }
-    if(ui->pyup->value()>0){
+    if(!isClip && ui->pyup->value()>0){
         isPy=true;
         XFilter::Get()->Add(XTask{XTask_PYUP,{(double)ui->pyup->value()}});
         int w = XVideoThread::Get()->width;
@@ -125,7 +138,7 @@ void XVideoUI::Set(){
     }
     
     // 尺寸调整
-    if(!isPy && ui->width->value()>0 && ui->high->value()>0){
+    if(!isClip && !isPy && ui->width->value()>0 && ui->high->value()>0){
         XFilter::Get()->Add(XTask{XTask_RESIZE,{(double)ui->width->value(),(double )ui->high->value()}});
     }
     
@@ -155,6 +168,8 @@ void XVideoUI::Set(){
     else if(ui->flipBox->currentIndex()==3){
         XFilter::Get()->Add(XTask {XTASK_FLIPXY});
     }
+
+
 
 }
 

@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-02-01 08:37:25
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-04 19:00:16
+ * @LastEditTime: 2023-02-04 22:00:41
  * @FilePath: /XVideoEdit/src/XImagePro.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -28,19 +28,21 @@ public:
     void Gain(double bright, double contrast);
     XImagePro();
     ~XImagePro();
-
+    // 旋转
     void Rotate90();
     void Rotate180();
     void Rotate270();
-
+    // 图像镜像
     void FlipX();
     void FlipY();
     void FlipXY();
-
+    // 图像尺寸
     void Resize(int width, int high);
-
+    // 高斯金字塔，拉普拉斯金字塔
     void PyDown(int count);
     void PyUp(int count);
+    //画面裁剪
+    void Clip(int x, int y, int width, int high);
 
 private:
     // origin img

@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-02-01 08:37:25
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-04 19:01:27
+ * @LastEditTime: 2023-02-04 22:41:45
  * @FilePath: /XVideoEdit/src/XImagePro.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -87,4 +87,12 @@ void XImagePro::PyUp(int count){
     for(int i=0;i<count; i++){
         cv::pyrUp(dst, dst);
     }
+}
+
+void XImagePro::Clip(int x, int y, int width, int high){
+    if(dst.empty()) return;
+    if(x<0 || y<0 || width<=0 || high<=0) return;
+    if(x>dst.cols || y>dst.rows) return;
+    dst = dst(cv::Rect(x,y,width,high));
+
 }

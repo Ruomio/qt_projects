@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>860</width>
-    <height>600</height>
+    <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -78,7 +78,7 @@ QLabel{
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>438</x>
+     <x>458</x>
      <y>401</y>
      <width>61</width>
      <height>20</height>
@@ -91,8 +91,8 @@ QLabel{
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>430</y>
+     <x>440</x>
+     <y>421</y>
      <width>81</width>
      <height>17</height>
     </rect>
@@ -104,7 +104,7 @@ QLabel{
   <widget class="QSpinBox" name="bright">
    <property name="geometry">
     <rect>
-     <x>510</x>
+     <x>530</x>
      <y>400</y>
      <width>61</width>
      <height>20</height>
@@ -120,8 +120,8 @@ QLabel{
   <widget class="QDoubleSpinBox" name="contrast">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>429</y>
+     <x>530</x>
+     <y>420</y>
      <width>62</width>
      <height>20</height>
     </rect>
@@ -210,8 +210,8 @@ QLabel{
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>451</x>
-     <y>455</y>
+     <x>471</x>
+     <y>438</y>
      <width>61</width>
      <height>20</height>
     </rect>
@@ -223,9 +223,9 @@ QLabel{
   <widget class="QComboBox" name="rotateBox">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>457</y>
-     <width>72</width>
+     <x>530</x>
+     <y>440</y>
+     <width>60</width>
      <height>16</height>
     </rect>
    </property>
@@ -253,9 +253,9 @@ QLabel{
   <widget class="QComboBox" name="flipBox">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>483</y>
-     <width>72</width>
+     <x>530</x>
+     <y>458</y>
+     <width>60</width>
      <height>16</height>
     </rect>
    </property>
@@ -283,8 +283,8 @@ QLabel{
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>481</y>
+     <x>470</x>
+     <y>457</y>
      <width>61</width>
      <height>20</height>
     </rect>
@@ -296,9 +296,9 @@ QLabel{
   <widget class="QSpinBox" name="width">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>510</y>
-     <width>61</width>
+     <x>530</x>
+     <y>475</y>
+     <width>40</width>
      <height>20</height>
     </rect>
    </property>
@@ -312,9 +312,9 @@ QLabel{
   <widget class="QSpinBox" name="high">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>530</y>
-     <width>61</width>
+     <x>570</x>
+     <y>475</y>
+     <width>40</width>
      <height>20</height>
     </rect>
    </property>
@@ -328,8 +328,8 @@ QLabel{
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>429</x>
-     <y>520</y>
+     <x>449</x>
+     <y>475</y>
      <width>71</width>
      <height>20</height>
     </rect>
@@ -341,8 +341,8 @@ QLabel{
   <widget class="QSpinBox" name="pyup">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>580</y>
+     <x>530</x>
+     <y>515</y>
      <width>61</width>
      <height>20</height>
     </rect>
@@ -357,8 +357,8 @@ QLabel{
   <widget class="QSpinBox" name="pydowm">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>560</y>
+     <x>530</x>
+     <y>495</y>
      <width>61</width>
      <height>20</height>
     </rect>
@@ -373,8 +373,8 @@ QLabel{
   <widget class="QLabel" name="label_6">
    <property name="geometry">
     <rect>
-     <x>439</x>
-     <y>560</y>
+     <x>459</x>
+     <y>495</y>
      <width>71</width>
      <height>20</height>
     </rect>
@@ -386,14 +386,101 @@ QLabel{
   <widget class="QLabel" name="label_7">
    <property name="geometry">
     <rect>
-     <x>415</x>
-     <y>580</y>
+     <x>435</x>
+     <y>515</y>
      <width>91</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
     <string>拉普拉斯金字塔</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>536</y>
+     <width>101</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>图像裁剪(x,y,w,h)</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="clip_y">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>536</y>
+     <width>40</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>9999</number>
+   </property>
+   <property name="displayIntegerBase">
+    <number>10</number>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="clip_x">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>536</y>
+     <width>40</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>9999</number>
+   </property>
+   <property name="displayIntegerBase">
+    <number>10</number>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="clip_width">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>536</y>
+     <width>40</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>9999</number>
+   </property>
+   <property name="displayIntegerBase">
+    <number>10</number>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="clip_high">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>536</y>
+     <width>40</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>9999</number>
+   </property>
+   <property name="displayIntegerBase">
+    <number>10</number>
+   </property>
+  </widget>
+  <widget class="XVideoWidget" name="src2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>400</y>
+     <width>400</width>
+     <height>340</height>
+    </rect>
    </property>
   </widget>
  </widget>
