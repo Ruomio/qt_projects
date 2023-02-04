@@ -1,8 +1,8 @@
 /*
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-29 20:26:21
- * @LastEditors: Ruomio 1065940593@qq.com
- * @LastEditTime: 2023-02-04 17:12:49
+ * @LastEditors: PapillonAz 1065940593@qq.com
+ * @LastEditTime: 2023-02-04 18:53:36
  * @FilePath: /XVideoEdit/src/xvideoui.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -73,7 +73,7 @@ void XVideoUI::Open(){
         QMessageBox::information(0,"error",name+" open failed!");    //0表示没有父类，不会继承控件样式 
         return;
     }
-
+    Play();
 }
 void XVideoUI::timerEvent(QTimerEvent *e){
     if(pressSlider) return;
@@ -96,8 +96,13 @@ void XVideoUI::SetPos(int pos){
 void XVideoUI::Set(){
     // 先清理
     XFilter::Get()->Clear();
-    // 对比度和亮度
     
+    // 尺寸调整
+    if(ui->width->value()>0 && ui->high->value()>0){
+        XFilter::Get()->Add(XTask{XTask_RESIZE,{(double)ui->width->value(),(double )ui->high->value()}});
+    }
+    
+    // 对比度和亮度
     if(ui->bright->value() >0 || ui->contrast->value() >1 ){
         XFilter::Get()->Add(XTask{XTASK_GAIN, {(double)ui->bright->value(),ui->contrast->value()}});
     }
@@ -136,7 +141,7 @@ void XVideoUI::Export(){
     }
     QString name = QFileDialog::getSaveFileName(this,"save","out1.avi");
     std::string filename = name.toLocal8Bit().data();
-    if(XVideoThread::Get()->StartSave(filename)){
+    if(XVideoThread::Get()->StartSave(filename,ui->width->value(), ui->high->value())){
         isExport=true;
         ui->exportButton->setText("stop Export");
     }

@@ -293,6 +293,51 @@ QLabel{
     <string>图像镜像</string>
    </property>
   </widget>
+  <widget class="QSpinBox" name="width">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>510</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>9999</number>
+   </property>
+   <property name="displayIntegerBase">
+    <number>10</number>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="high">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>530</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>9999</number>
+   </property>
+   <property name="displayIntegerBase">
+    <number>10</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>520</y>
+     <width>71</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>图像宽高W.H</string>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>
