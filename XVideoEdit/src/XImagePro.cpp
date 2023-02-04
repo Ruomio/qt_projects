@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-02-01 08:37:25
  * @LastEditors: Ruomio 1065940593@qq.com
- * @LastEditTime: 2023-02-04 12:04:04
+ * @LastEditTime: 2023-02-04 17:06:39
  * @FilePath: /XVideoEdit/src/XImagePro.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -52,4 +52,20 @@ void XImagePro::Rotate180(){
 void XImagePro::Rotate270(){
     if(dst.empty()) return;
     cv::rotate(dst,dst,cv::ROTATE_90_COUNTERCLOCKWISE);
+}
+
+
+void XImagePro::FlipX(){
+    if(dst.empty()) return;
+    // 左右镜像
+    flip(dst,dst,0);
+}
+void XImagePro::FlipY(){
+    if(dst.empty()) return;
+    // 上下镜像
+    flip(dst,dst,1);
+}
+void XImagePro:: FlipXY(){
+    if(dst.empty()) return;
+    flip(dst,dst,-1);
 }

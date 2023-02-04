@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-29 20:26:21
  * @LastEditors: Ruomio 1065940593@qq.com
- * @LastEditTime: 2023-02-04 15:47:46
+ * @LastEditTime: 2023-02-04 17:12:49
  * @FilePath: /XVideoEdit/src/xvideoui.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -102,15 +102,28 @@ void XVideoUI::Set(){
         XFilter::Get()->Add(XTask{XTASK_GAIN, {(double)ui->bright->value(),ui->contrast->value()}});
     }
 
+    //旋转
     if(ui->rotateBox->currentIndex()==1){
         XFilter::Get()->Add(XTask {XTASK_ROTATE90});
     }
-    if(ui->rotateBox->currentIndex()==2){
+    else if(ui->rotateBox->currentIndex()==2){
         XFilter::Get()->Add(XTask {XTASK_ROTATE180});
     }
-    if(ui->rotateBox->currentIndex()==3){
+    else if(ui->rotateBox->currentIndex()==3){
         XFilter::Get()->Add(XTask {XTASK_ROTATE270});
     }
+
+    // 镜像
+    if(ui->flipBox->currentIndex()==1){
+        XFilter::Get()->Add(XTask {XTASK_FLIPX});
+    }
+    else if(ui->flipBox->currentIndex()==2){
+        XFilter::Get()->Add(XTask {XTASK_FLIPY});
+    }
+    else if(ui->flipBox->currentIndex()==3){
+        XFilter::Get()->Add(XTask {XTASK_FLIPXY});
+    }
+
 }
 
 void XVideoUI::Export(){
