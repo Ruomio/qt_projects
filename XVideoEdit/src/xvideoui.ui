@@ -613,6 +613,44 @@ QLabel{
     <double>1.000000000000000</double>
    </property>
   </widget>
+  <widget class="QPushButton" name="blendButton">
+   <property name="geometry">
+    <rect>
+     <x>419</x>
+     <y>750</y>
+     <width>70</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>融合(alpha)</string>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="blend_alpha">
+   <property name="geometry">
+    <rect>
+     <x>497</x>
+     <y>749</y>
+     <width>50</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <double>0.000000000000000</double>
+   </property>
+   <property name="maximum">
+    <double>1.000000000000000</double>
+   </property>
+   <property name="singleStep">
+    <double>0.100000000000000</double>
+   </property>
+   <property name="value">
+    <double>0.500000000000000</double>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>
@@ -769,6 +807,22 @@ QLabel{
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>blendButton</sender>
+   <signal>clicked()</signal>
+   <receiver>XVideoUI</receiver>
+   <slot>Blend()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>444</x>
+     <y>760</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>426</x>
+     <y>-12</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>Open()</slot>
@@ -780,5 +834,6 @@ QLabel{
   <slot>Play()</slot>
   <slot>Pause()</slot>
   <slot>Mark()</slot>
+  <slot>Blend()</slot>
  </slots>
 </ui>

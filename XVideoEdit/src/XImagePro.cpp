@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-02-01 08:37:25
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-05 15:09:11
+ * @LastEditTime: 2023-02-05 15:44:24
  * @FilePath: /XVideoEdit/src/XImagePro.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -119,3 +119,12 @@ void XImagePro::Mark(int x, int y, double alpha,double size){
     cv::Mat rol = dst(cv::Rect(x,y,mark.cols, mark.rows));
     cv::addWeighted(mark, alpha, rol, 1-alpha, 0, rol);
 }
+
+ void XImagePro::Blend(double alpha){
+    if(dst.empty()) return;
+    if(src2.empty()) return;
+    if(src2.size()!=dst.size()){
+        cv::resize(src2, src2, dst.size());
+    }
+    cv::addWeighted(src2, alpha, dst, 1-alpha, 0, dst);
+ }

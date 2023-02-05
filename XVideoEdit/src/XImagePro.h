@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-02-01 08:37:25
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-05 11:01:14
+ * @LastEditTime: 2023-02-05 15:40:15
  * @FilePath: /XVideoEdit/src/XImagePro.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -49,6 +49,8 @@ public:
     void Binary();
     // 水印
     void Mark(int x, int y, double alpha,double size);
+    // 融合
+    void Blend(double alpha);
 
 private:
     // origin img

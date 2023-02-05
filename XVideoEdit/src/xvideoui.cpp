@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-29 20:26:21
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-05 14:40:24
+ * @LastEditTime: 2023-02-05 17:15:03
  * @FilePath: /XVideoEdit/src/xvideoui.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -29,6 +29,7 @@ static bool pressSlider=false;
 static bool isExport = false;
 static bool isColor = true;
 static bool isMark = false;
+static bool isBlend = false;
 
 XVideoUI::XVideoUI(QWidget *parent)
     : QWidget(parent)
@@ -42,6 +43,11 @@ XVideoUI::XVideoUI(QWidget *parent)
     QObject::connect(XVideoThread::Get(),
         SIGNAL(ViewImage1(cv::Mat)),
         ui->src1,
+        SLOT(SetImage(cv::Mat))
+    );
+    QObject::connect(XVideoThread::Get(),
+        SIGNAL(ViewImage2(cv::Mat)),
+        ui->src2,
         SLOT(SetImage(cv::Mat))
     );
     // 处理后视频
@@ -193,6 +199,12 @@ void XVideoUI::Set(){
         XFilter::Get()->Add(XTask {XTASK_MARK,{x,y,alpha,size}});
     }
 
+    // 融合
+    if(isBlend){
+        double alpha = ui->blend_alpha->value();
+         XFilter::Get()->Add(XTask {XTASK_BLEND,{alpha}});
+    }
+
 
 }
 
@@ -247,3 +259,14 @@ void XVideoUI::Mark(){
 
     isMark=true;
 }
+
+void XVideoUI::Blend(){
+    isBlend=false;
+    QString name = QFileDialog::getOpenFileName(this,"select video:");
+    if(name.isEmpty()){
+        return;
+    }
+    std::string file = name.toLocal8Bit().data();
+    isBlend = XVideoThread::Get()->Open2(file);
+
+} 
