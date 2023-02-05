@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-02-01 08:37:25
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-05 15:00:33
+ * @LastEditTime: 2023-02-05 15:07:15
  * @FilePath: /XVideoEdit/src/XImagePro.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -27,6 +27,7 @@ void XImagePro::Set(cv::Mat mat1, cv::Mat mat2, cv::Mat mark)
 {
     this->src1=mat1;
     this->src2=mat2;
+    this->mark=mark;
     this->src1.copyTo(dst);
 }
 
@@ -110,7 +111,6 @@ void XImagePro::Binary(){
 }
 
 void XImagePro::Mark(int x, int y, double alpha,double size){
-    mark = XVideoThread::Get()->GetMark();
     if(dst.empty()) return;
     if(mark.empty()) return;
     // 改变水印大小
