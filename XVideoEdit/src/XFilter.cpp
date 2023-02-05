@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-02-01 11:19:32
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-05 08:29:10
+ * @LastEditTime: 2023-02-05 15:00:10
  * @FilePath: /XVideoEdit/src/XFilter.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -11,19 +11,20 @@
 #include <opencv2/core/mat.hpp>
 #include <vector>
 #include <QMutex>
+#include <iostream>
 
-class CXFilter : public XFilter
+class CXFilter : public XFilter 
 {
 public:
     std::vector<XTask>  tasks;
 
     QMutex mutex;
     
-    cv::Mat Filter(cv::Mat mat1, cv::Mat mat2)
+    cv::Mat Filter(cv::Mat mat1, cv::Mat mat2, cv::Mat mark)
     {   
         mutex.lock();
         XImagePro p;
-        p.Set(mat1, mat2);
+        p.Set(mat1, mat2, mark);
         int size = tasks.size();
         for(int i=0;i<size;i++){
             switch (tasks[i].type) {
@@ -68,6 +69,9 @@ public:
                     break;
                 case XTASK_BINARY:
                     p.Binary();
+                    break;
+                case XTASK_MARK:
+                    p.Mark(tasks[i].para[0], tasks[i].para[1], tasks[i].para[2], tasks[i].para[3]);
                     break;
                 default: break;
             }

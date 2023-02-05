@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-29 20:26:21
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-05 09:22:56
+ * @LastEditTime: 2023-02-05 14:40:24
  * @FilePath: /XVideoEdit/src/xvideoui.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -11,6 +11,9 @@
 #include "XFilter.h"
 #include "xvideothread.h"
 #include "xvideowidget.h"
+#include <opencv2/core/mat.hpp>
+#include <opencv2/highgui.hpp>
+#include <opencv2/imgcodecs.hpp>
 #include <opencv4/opencv2/core.hpp>
 #include <QFileDialog>
 #include <qdialog.h>
@@ -25,6 +28,7 @@ using namespace std;
 static bool pressSlider=false;
 static bool isExport = false;
 static bool isColor = true;
+static bool isMark = false;
 
 XVideoUI::XVideoUI(QWidget *parent)
     : QWidget(parent)
@@ -180,6 +184,14 @@ void XVideoUI::Set(){
         XFilter::Get()->Add(XTask {XTASK_FLIPXY});
     }
 
+    // 水印
+    if(isMark){
+        double x = ui->mark_x->value();
+        double y = ui->mark_y->value();
+        double alpha = ui->mark_alpha->value();
+        double size = ui->mark_size->value();
+        XFilter::Get()->Add(XTask {XTASK_MARK,{x,y,alpha,size}});
+    }
 
 
 }
@@ -220,4 +232,18 @@ void XVideoUI::Pause(){
     ui->playButton->show();
     XVideoThread::Get()->Pause();
     ui->pauseButton->hide();
+}
+
+void XVideoUI::Mark(){
+    isMark=false;
+    QString name = QFileDialog::getOpenFileName(this,"select mark image:");
+    if(name.isEmpty()){
+        return;
+    }
+    std::string file = name.toLocal8Bit().data();
+    cv::Mat mark = cv::imread(file);
+    if(mark.empty()) return;
+    XVideoThread::Get()->SetMark(mark);
+
+    isMark=true;
 }

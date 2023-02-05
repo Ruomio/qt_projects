@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-30 07:51:29
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-05 09:19:44
+ * @LastEditTime: 2023-02-05 15:01:29
  * @FilePath: /XVideoEdit/src/xvideothread.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -56,6 +56,7 @@ bool XVideoThread::Open(const std::string file){
 
 void XVideoThread::run(){
     Mat mat1;
+    Mat mat2;
     while(true){
         mutex.lock();
         if(isExit){
@@ -90,7 +91,8 @@ void XVideoThread::run(){
             ViewImage1(mat1);
         }
 
-        Mat dst = XFilter::Get()->Filter(mat1, Mat());
+        // 通过过滤器处理视频
+        Mat dst = XFilter::Get()->Filter(mat1, mat2, mark);
         // 显示处理后图像
         if(!isWrite){
             ViewDst(dst);
@@ -213,5 +215,11 @@ void XVideoThread::Play(){
 void XVideoThread::Pause(){
     mutex.lock();
     isPlay=false;
+    mutex.unlock();
+}
+
+void XVideoThread::SetMark(Mat m){
+    mutex.lock();
+    this->mark=m;
     mutex.unlock();
 }

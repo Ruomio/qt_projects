@@ -1,8 +1,8 @@
 /*
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-29 20:26:21
- * @LastEditors: Ruomio 1065940593@qq.com
- * @LastEditTime: 2023-02-03 09:32:16
+ * @LastEditors: PapillonAz 1065940593@qq.com
+ * @LastEditTime: 2023-02-05 15:01:55
  * @FilePath: /XVideoEdit/src/xvideoui.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -38,6 +38,8 @@ public slots:
 
     void Play();
     void Pause(); 
+
+    void Mark();
 
 private:
     Ui::XVideoUI *ui;

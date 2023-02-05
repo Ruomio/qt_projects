@@ -399,7 +399,7 @@ QLabel{
   <widget class="QLabel" name="label_8">
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>428</x>
      <y>536</y>
      <width>101</width>
      <height>20</height>
@@ -486,9 +486,9 @@ QLabel{
   <widget class="QLabel" name="label_9">
    <property name="geometry">
     <rect>
-     <x>470</x>
+     <x>472</x>
      <y>559</y>
-     <width>61</width>
+     <width>50</width>
      <height>20</height>
     </rect>
    </property>
@@ -520,6 +520,98 @@ QLabel{
      <string>二值化</string>
     </property>
    </item>
+  </widget>
+  <widget class="QSpinBox" name="mark_x">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>580</y>
+     <width>40</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>9999</number>
+   </property>
+   <property name="displayIntegerBase">
+    <number>10</number>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="mark_y">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>580</y>
+     <width>40</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>9999</number>
+   </property>
+   <property name="displayIntegerBase">
+    <number>10</number>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="markButton">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>580</y>
+     <width>90</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>水印(x,y,alpha)</string>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="mark_alpha">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>580</y>
+     <width>50</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <double>0.000000000000000</double>
+   </property>
+   <property name="maximum">
+    <double>1.000000000000000</double>
+   </property>
+   <property name="singleStep">
+    <double>0.100000000000000</double>
+   </property>
+   <property name="value">
+    <double>1.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="mark_size">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>580</y>
+     <width>50</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <double>0.000000000000000</double>
+   </property>
+   <property name="maximum">
+    <double>10.000000000000000</double>
+   </property>
+   <property name="singleStep">
+    <double>0.100000000000000</double>
+   </property>
+   <property name="value">
+    <double>1.000000000000000</double>
+   </property>
   </widget>
  </widget>
  <customwidgets>
@@ -609,7 +701,7 @@ QLabel{
     </hint>
     <hint type="destinationlabel">
      <x>647</x>
-     <y>-9</y>
+     <y>0</y>
     </hint>
    </hints>
   </connection>
@@ -625,7 +717,7 @@ QLabel{
     </hint>
     <hint type="destinationlabel">
      <x>721</x>
-     <y>-13</y>
+     <y>0</y>
     </hint>
    </hints>
   </connection>
@@ -641,7 +733,7 @@ QLabel{
     </hint>
     <hint type="destinationlabel">
      <x>18</x>
-     <y>-14</y>
+     <y>0</y>
     </hint>
    </hints>
   </connection>
@@ -657,7 +749,23 @@ QLabel{
     </hint>
     <hint type="destinationlabel">
      <x>108</x>
-     <y>-10</y>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>markButton</sender>
+   <signal>clicked()</signal>
+   <receiver>XVideoUI</receiver>
+   <slot>Mark()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>439</x>
+     <y>590</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>443</x>
+     <y>-18</y>
     </hint>
    </hints>
   </connection>
@@ -671,5 +779,6 @@ QLabel{
   <slot>Export()</slot>
   <slot>Play()</slot>
   <slot>Pause()</slot>
+  <slot>Mark()</slot>
  </slots>
 </ui>

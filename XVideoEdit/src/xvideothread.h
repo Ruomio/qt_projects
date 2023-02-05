@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-30 07:51:28
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-05 09:19:15
+ * @LastEditTime: 2023-02-05 14:54:58
  * @FilePath: /XVideoEdit/src/xvideothread.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -10,6 +10,7 @@
 #define XVIDEOTHREAD_H
 
 #include <QtOpenGLWidgets/QOpenGLWidget>
+#include <opencv2/core/mat.hpp>
 #include <opencv4/opencv2/core.hpp>
 #include <opencv2/videoio.hpp>
 #include <qthread.h>
@@ -55,6 +56,9 @@ public:
     
     void Play();
     void Pause();
+    
+    void SetMark(cv::Mat mark);
+    cv::Mat GetMark(){return this->mark;}
 
 signals:
     void ViewImage1(cv::Mat mat);
@@ -71,6 +75,7 @@ protected:
     QMutex mutex;
     bool isWrite=false;
     bool isPlay=false;
+    cv::Mat mark;
 };
 
 #endif // XVIDEOTHREAD_H

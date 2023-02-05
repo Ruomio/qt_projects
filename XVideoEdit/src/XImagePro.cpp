@@ -2,13 +2,16 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-02-01 08:37:25
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-05 08:28:25
+ * @LastEditTime: 2023-02-05 15:00:33
  * @FilePath: /XVideoEdit/src/XImagePro.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 #include "XImagePro.h"
-#include <opencv2/core/types.hpp>
+#include "xvideothread.h"
+#include <opencv2/core.hpp>
+#include <opencv2/core/mat.hpp>
 #include <opencv2/imgproc.hpp>
+#include <iostream>
 
 XImagePro::XImagePro()
 {
@@ -20,7 +23,7 @@ XImagePro::~XImagePro()
 
 }
 
-void XImagePro::Set(cv::Mat mat1, cv::Mat mat2)
+void XImagePro::Set(cv::Mat mat1, cv::Mat mat2, cv::Mat mark)
 {
     this->src1=mat1;
     this->src2=mat2;
@@ -104,4 +107,16 @@ void XImagePro::Gray(){
 void XImagePro::Binary(){
     if(dst.empty()) return;
     cv::threshold(dst,dst,100,255,cv::THRESH_BINARY);
+}
+
+void XImagePro::Mark(int x, int y, double alpha,double size){
+    mark = XVideoThread::Get()->GetMark();
+    if(dst.empty()) return;
+    if(mark.empty()) return;
+    // 改变水印大小
+    int w = size*mark.cols;
+    int h = size*mark.rows;
+    cv::resize(mark, mark, cv::Size(w,h));
+    cv::Mat rol = dst(cv::Rect(x,y,mark.cols, mark.rows));
+    cv::addWeighted(mark, alpha, rol, 1-alpha, 0, rol);
 }
