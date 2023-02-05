@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-29 20:26:21
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-04 22:47:47
+ * @LastEditTime: 2023-02-05 09:22:56
  * @FilePath: /XVideoEdit/src/xvideoui.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -24,6 +24,7 @@ using namespace std;
 
 static bool pressSlider=false;
 static bool isExport = false;
+static bool isColor = true;
 
 XVideoUI::XVideoUI(QWidget *parent)
     : QWidget(parent)
@@ -96,6 +97,7 @@ void XVideoUI::SetPos(int pos){
 void XVideoUI::Set(){
     // 先清理
     XFilter::Get()->Clear();
+    isColor=true;
 
     // 视频裁剪
     bool isClip = false;
@@ -105,16 +107,16 @@ void XVideoUI::Set(){
     int ch = ui->clip_high->value();
     if(cx+cy+cw+ch>0){
         isClip=true;
-        XFilter::Get()->Add(XTask {XTask_CLIP,{(double)cx,(double)cy,(double)cw,(double)ch}});
+        XFilter::Get()->Add(XTask {XTASK_CLIP,{(double)cx,(double)cy,(double)cw,(double)ch}});
         // 变换尺寸与原尺寸一致
-        XFilter::Get()->Add(XTask{XTask_RESIZE,{(double)XVideoThread::Get()->width,(double )XVideoThread::Get()->high}});
+        XFilter::Get()->Add(XTask{XTASK_RESIZE,{(double)XVideoThread::Get()->width,(double )XVideoThread::Get()->high}});
     }
 
     // 图像金字塔
     bool isPy = false;
     if(!isClip && ui->pydowm->value()>0){
         isPy=true;
-        XFilter::Get()->Add(XTask{XTask_PYDOWN,{(double)ui->pydowm->value()}});
+        XFilter::Get()->Add(XTask{XTASK_PYDOWN,{(double)ui->pydowm->value()}});
         int w = XVideoThread::Get()->width;
         int h = XVideoThread::Get()->high;
         for(int i=0; i<ui->pydowm->value();i++){
@@ -126,7 +128,7 @@ void XVideoUI::Set(){
     }
     if(!isClip && ui->pyup->value()>0){
         isPy=true;
-        XFilter::Get()->Add(XTask{XTask_PYUP,{(double)ui->pyup->value()}});
+        XFilter::Get()->Add(XTask{XTASK_PYUP,{(double)ui->pyup->value()}});
         int w = XVideoThread::Get()->width;
         int h = XVideoThread::Get()->high;
         for(int i=0; i<ui->pyup->value();i++){
@@ -139,7 +141,16 @@ void XVideoUI::Set(){
     
     // 尺寸调整
     if(!isClip && !isPy && ui->width->value()>0 && ui->high->value()>0){
-        XFilter::Get()->Add(XTask{XTask_RESIZE,{(double)ui->width->value(),(double )ui->high->value()}});
+        XFilter::Get()->Add(XTask{XTASK_RESIZE,{(double)ui->width->value(),(double )ui->high->value()}});
+    }
+
+    // 颜色调整
+    if(ui->colorBox->currentIndex()==1){
+        XFilter::Get()->Add(XTask {XTASK_GRAY});
+        isColor = false;
+    }
+    if(ui->colorBox->currentIndex()==2){
+        XFilter::Get()->Add(XTask {XTASK_BINARY});
     }
     
     // 对比度和亮度
@@ -183,7 +194,7 @@ void XVideoUI::Export(){
     }
     QString name = QFileDialog::getSaveFileName(this,"save","out1.avi");
     std::string filename = name.toLocal8Bit().data();
-    if(XVideoThread::Get()->StartSave(filename,ui->width->value(), ui->high->value())){
+    if(XVideoThread::Get()->StartSave(filename,ui->width->value(), ui->high->value(),isColor)){
         isExport=true;
         ui->exportButton->setText("stop Export");
     }

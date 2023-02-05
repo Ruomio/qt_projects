@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-30 07:51:28
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-04 19:29:43
+ * @LastEditTime: 2023-02-05 09:19:15
  * @FilePath: /XVideoEdit/src/xvideothread.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -50,7 +50,7 @@ public:
     // 时间位置
     bool Seek(double pos);
     // 开始导出视频
-    bool StartSave(const std::string filename, int width=0, int height=0);
+    bool StartSave(const std::string filename, int width=0, int height=0, bool isColor=true);
     void StopSave();
     
     void Play();

@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-30 07:51:29
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-05 08:09:15
+ * @LastEditTime: 2023-02-05 09:19:44
  * @FilePath: /XVideoEdit/src/xvideothread.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -161,7 +161,7 @@ bool XVideoThread::Seek(double pos){
     
 }
 
-bool XVideoThread::StartSave(const std::string filename, int width, int height){
+bool XVideoThread::StartSave(const std::string filename, int width, int height,bool isColor){
     std::cout<<"开始导出"<<std::endl;
     // 从头开始导出
     Seek(0);
@@ -185,7 +185,8 @@ bool XVideoThread::StartSave(const std::string filename, int width, int height){
     vw.open(filename,
         VideoWriter::fourcc('X', '2', '6', '4'),
         this->fps,
-        Size(width,height)
+        Size(width,height),
+        isColor
     );
     if(!vw.isOpened()){
         std::cout<<"start save failed!"<<std::endl;

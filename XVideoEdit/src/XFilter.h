@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-02-01 11:19:32
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-04 22:04:40
+ * @LastEditTime: 2023-02-05 08:28:48
  * @FilePath: /XVideoEdit/src/XFilter.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -23,10 +23,12 @@ enum XTaskType{
     XTASK_FLIPX,
     XTASK_FLIPY,
     XTASK_FLIPXY,
-    XTask_RESIZE,
-    XTask_PYDOWN,
-    XTask_PYUP,
-    XTask_CLIP,
+    XTASK_RESIZE,
+    XTASK_PYDOWN,
+    XTASK_PYUP,
+    XTASK_CLIP,
+    XTASK_GRAY,
+    XTASK_BINARY,
 };
 
 struct XTask{
