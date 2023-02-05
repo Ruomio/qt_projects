@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-30 07:51:29
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-04 19:32:08
+ * @LastEditTime: 2023-02-05 08:09:15
  * @FilePath: /XVideoEdit/src/xvideothread.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -41,7 +41,7 @@ bool XVideoThread::Open(const std::string file){
     mutex.lock();
     bool re = cap1.open(file);
     mutex.unlock();
-    std::cout<<"re: "<<re<<std::endl;
+    // std::cout<<"re: "<<re<<std::endl;
     if(!re){
         return re;
     }
