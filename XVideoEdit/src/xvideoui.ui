@@ -113,6 +113,9 @@ QLabel{
    <property name="maximum">
     <number>100</number>
    </property>
+   <property name="singleStep">
+    <number>10</number>
+   </property>
    <property name="displayIntegerBase">
     <number>10</number>
    </property>
@@ -617,7 +620,7 @@ QLabel{
    <property name="geometry">
     <rect>
      <x>419</x>
-     <y>750</y>
+     <y>671</y>
      <width>70</width>
      <height>21</height>
     </rect>
@@ -633,7 +636,7 @@ QLabel{
    <property name="geometry">
     <rect>
      <x>497</x>
-     <y>749</y>
+     <y>670</y>
      <width>50</width>
      <height>23</height>
     </rect>
@@ -649,6 +652,22 @@ QLabel{
    </property>
    <property name="value">
     <double>0.500000000000000</double>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="mergeButton">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>700</y>
+     <width>70</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>合并</string>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
    </property>
   </widget>
  </widget>
@@ -815,11 +834,27 @@ QLabel{
    <hints>
     <hint type="sourcelabel">
      <x>444</x>
-     <y>760</y>
+     <y>681</y>
     </hint>
     <hint type="destinationlabel">
      <x>426</x>
      <y>-12</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>mergeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>XVideoUI</receiver>
+   <slot>Merge()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>471</x>
+     <y>711</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>471</x>
+     <y>-13</y>
     </hint>
    </hints>
   </connection>
@@ -835,5 +870,6 @@ QLabel{
   <slot>Pause()</slot>
   <slot>Mark()</slot>
   <slot>Blend()</slot>
+  <slot>Merge()</slot>
  </slots>
 </ui>

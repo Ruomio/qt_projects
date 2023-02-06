@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-29 20:26:21
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-05 17:15:03
+ * @LastEditTime: 2023-02-06 16:20:55
  * @FilePath: /XVideoEdit/src/xvideoui.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -30,6 +30,7 @@ static bool isExport = false;
 static bool isColor = true;
 static bool isMark = false;
 static bool isBlend = false;
+static bool isMerge = false;
 
 XVideoUI::XVideoUI(QWidget *parent)
     : QWidget(parent)
@@ -150,7 +151,7 @@ void XVideoUI::Set(){
     }
     
     // 尺寸调整
-    if(!isClip && !isPy && ui->width->value()>0 && ui->high->value()>0){
+    if(!isMerge&&!isClip && !isPy && ui->width->value()>0 && ui->high->value()>0){
         XFilter::Get()->Add(XTask{XTASK_RESIZE,{(double)ui->width->value(),(double )ui->high->value()}});
     }
 
@@ -202,7 +203,17 @@ void XVideoUI::Set(){
     // 融合
     if(isBlend){
         double alpha = ui->blend_alpha->value();
-         XFilter::Get()->Add(XTask {XTASK_BLEND,{alpha}});
+        XFilter::Get()->Add(XTask {XTASK_BLEND,{alpha}});
+    }
+
+    // 合并
+    if(isMerge){
+        double h1 = XVideoThread::Get()->high;
+        double h2 = XVideoThread::Get()->high2;
+        int w2 = XVideoThread::Get()->width2* (h1/h2);
+        XFilter::Get()->Add(XTask {XTASK_MERGE});
+        ui->width->setValue(XVideoThread::Get()->width+w2);
+        ui->high->setValue(h1);
     }
 
 
@@ -262,11 +273,24 @@ void XVideoUI::Mark(){
 
 void XVideoUI::Blend(){
     isBlend=false;
+    isMerge=false;
     QString name = QFileDialog::getOpenFileName(this,"select video:");
     if(name.isEmpty()){
         return;
     }
     std::string file = name.toLocal8Bit().data();
     isBlend = XVideoThread::Get()->Open2(file);
+
+} 
+
+void XVideoUI::Merge(){
+    isBlend=false;
+    isMerge=false;
+    QString name = QFileDialog::getOpenFileName(this,"select video:");
+    if(name.isEmpty()){
+        return;
+    }
+    std::string file = name.toLocal8Bit().data();
+    isMerge = XVideoThread::Get()->Open2(file);
 
 } 

@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-30 07:51:29
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-05 17:21:01
+ * @LastEditTime: 2023-02-06 14:27:26
  * @FilePath: /XVideoEdit/src/xvideothread.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -66,8 +66,8 @@ bool XVideoThread::Open2(const std::string file){
         return re;
     }
     
-    // this->width = cap2.get(CAP_PROP_FRAME_WIDTH);
-    // this->high = cap2.get(CAP_PROP_FRAME_HEIGHT);
+    this->width2 = cap2.get(CAP_PROP_FRAME_WIDTH);
+    this->high2 = cap2.get(CAP_PROP_FRAME_HEIGHT);
 
     // fps = cap2.get(CAP_PROP_FPS);
     // if(fps <= 0) fps =25;
