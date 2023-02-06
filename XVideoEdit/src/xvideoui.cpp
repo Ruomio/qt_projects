@@ -2,12 +2,13 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-29 20:26:21
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-06 16:20:55
+ * @LastEditTime: 2023-02-06 19:54:23
  * @FilePath: /XVideoEdit/src/xvideoui.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 #include "xvideoui.h"
 #include "./ui_xvideoui.h"
+#include "XAudio.h"
 #include "XFilter.h"
 #include "xvideothread.h"
 #include "xvideowidget.h"
@@ -238,6 +239,15 @@ void XVideoUI::Export(){
 void XVideoUI::ExprotEnd(){
     isExport=false;
     ui->exportButton->setText("start Export");
+
+    // 处理音频 
+    string srcFile = XVideoThread::Get()->src1file;
+    string dst = XVideoThread::Get()->DstFile;
+    XAudio::Get()->ExportAu(srcFile, srcFile+".mp3");
+    string tmp = dst+".avi";
+    QFile::remove(tmp.c_str());
+    QFile::rename(dst.c_str(),tmp.c_str());
+    XAudio::Get()->Merge(tmp, srcFile+".mp3", dst);
 }
 
 void XVideoUI::Play(){

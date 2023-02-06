@@ -33,6 +33,8 @@ set(PROJECT_SOURCES
         src/XImagePro.cpp
         src/XFilter.h
         src/XFilter.cpp
+        src/XAudio.h
+        src/XAudio.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

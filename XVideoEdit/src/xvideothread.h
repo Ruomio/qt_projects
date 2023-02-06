@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-30 07:51:28
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-06 14:26:46
+ * @LastEditTime: 2023-02-06 19:33:54
  * @FilePath: /XVideoEdit/src/xvideothread.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,6 +16,7 @@
 #include <qthread.h>
 #include <QMutex>
 #include <qmutex.h>
+#include <string>
 
 class XVideoThread:public QThread
 { 
@@ -41,6 +42,8 @@ public:
     int high=0;
     int width2=0;
     int high2=0;
+    std::string src1file;
+    std::string DstFile;
 
     //当前位置
     double GetPos();

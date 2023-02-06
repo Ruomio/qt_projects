@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-30 07:51:29
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-06 14:27:26
+ * @LastEditTime: 2023-02-06 19:36:37
  * @FilePath: /XVideoEdit/src/xvideothread.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -53,6 +53,7 @@ bool XVideoThread::Open(const std::string file){
 
     fps = cap1.get(CAP_PROP_FPS);
     if(fps <= 0) fps =25;
+    src1file=file;
     return true;
 }
 bool XVideoThread::Open2(const std::string file){
@@ -228,6 +229,7 @@ bool XVideoThread::StartSave(const std::string filename, int width, int height,b
         mutex.unlock();
         return false;
     }
+    DstFile = filename;
     mutex.unlock();
     return true;
 }
