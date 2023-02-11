@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-30 07:51:29
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-06 19:36:37
+ * @LastEditTime: 2023-02-07 08:52:57
  * @FilePath: /XVideoEdit/src/xvideothread.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -50,10 +50,10 @@ bool XVideoThread::Open(const std::string file){
     
     this->width = cap1.get(CAP_PROP_FRAME_WIDTH);
     this->high = cap1.get(CAP_PROP_FRAME_HEIGHT);
-
     fps = cap1.get(CAP_PROP_FPS);
     if(fps <= 0) fps =25;
     src1file=file;
+    this->totalMs = ((double)cap1.get(CAP_PROP_FRAME_COUNT)/(double)fps)*1000;
     return true;
 }
 bool XVideoThread::Open2(const std::string file){
@@ -95,8 +95,11 @@ void XVideoThread::run(){
             msleep(5);
             continue;
         }
+
+        // 阶段结束位置
+        int cur = cap1.get(CAP_PROP_POS_FRAMES);
         // 读一帧视频，解码并颜色转换
-        if(!cap1.read(mat1)||mat1.empty()){
+        if((end>0 && cur>=end )|| !cap1.read(mat1)||mat1.empty()){
             mutex.unlock();
             // 最后一帧，主动释放
             if(isWrite){
@@ -152,9 +155,23 @@ bool XVideoThread::IsGetfile(){
     return false;
 }
 
+void XVideoThread::SetBegin(double p){
+    mutex.lock();
+    double count = cap1.get(CAP_PROP_FRAME_COUNT);
+    int frame = p*count;
+    this->begin=frame; 
+    mutex.unlock();
+}
+void XVideoThread::SetEnd(double p){
+    mutex.lock();
+    double count = cap1.get(CAP_PROP_FRAME_COUNT);
+    int frame = p*count;
+    this->end=frame;
+    mutex.unlock();
+}
 
 /**
- * @description:  bug， 不能加线程锁
+ * @description:
  * @return {*}
  */
 double XVideoThread::GetPos(){
@@ -200,7 +217,7 @@ bool XVideoThread::Seek(double pos){
 bool XVideoThread::StartSave(const std::string filename, int width, int height,bool isColor){
     std::cout<<"开始导出"<<std::endl;
     // 从头开始导出
-    Seek(0);
+    Seek(begin);
     mutex.lock();
     if(!cap1.isOpened()){
         mutex.unlock();

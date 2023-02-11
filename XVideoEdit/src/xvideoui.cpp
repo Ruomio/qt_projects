@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-29 20:26:21
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-06 19:54:23
+ * @LastEditTime: 2023-02-07 08:59:19
  * @FilePath: /XVideoEdit/src/xvideoui.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -104,6 +104,13 @@ void XVideoUI::SliderRelease(){
 
 void XVideoUI::SetPos(int pos){
     XVideoThread::Get()->Seek((double)pos/1000.);
+}
+void XVideoUI::Left(int pos){
+    XVideoThread::Get()->SetBegin((double)pos/1000.);
+    // SetPos(pos);
+}
+void XVideoUI::Right(int pos){
+    XVideoThread::Get()->SetEnd((double)pos/1000.);
 }
 
 void XVideoUI::Set(){
@@ -243,7 +250,13 @@ void XVideoUI::ExprotEnd(){
     // 处理音频 
     string srcFile = XVideoThread::Get()->src1file;
     string dst = XVideoThread::Get()->DstFile;
-    XAudio::Get()->ExportAu(srcFile, srcFile+".mp3");
+    int ss =0;
+    int t =0;
+    ss = XVideoThread::Get()->totalMs * ((double)ui->leftSlider->value()/1000);
+    int end = XVideoThread::Get()->totalMs * ((double)ui->rightSlider->value()/1000);
+    t = end-ss;
+
+    XAudio::Get()->ExportAu(srcFile, srcFile+".mp3",ss,t);
     string tmp = dst+".avi";
     QFile::remove(tmp.c_str());
     QFile::rename(dst.c_str(),tmp.c_str());

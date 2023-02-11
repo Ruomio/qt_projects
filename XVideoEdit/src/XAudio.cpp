@@ -2,7 +2,7 @@
  * @Author: PapillonAz 1065940593@qq.com
  * @Date: 2023-02-06 16:39:36
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-06 17:12:36
+ * @LastEditTime: 2023-02-06 22:28:48
  * @FilePath: /XVideoEdit/src/XAudio.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -15,11 +15,18 @@ using namespace std;
 class CXAudio:public XAudio{
 public:
     QMutex mutex;
-    bool ExportAu(std::string src, std::string out){
-        // ffmpeg -i src.mp4 -vn -y out.mp3
+    bool ExportAu(std::string src, std::string out, int beginMs, int outMs){
+        // ffmpeg -i src.mp4 -i -ss %h:%m:%m.%ms -t %h:%m:%m.%ms  -vn -y out.mp3
         std::string cmd = "ffmpeg ";
         cmd += "-i ";
         cmd += src;
+        cmd += " ";
+        if(beginMs>0){
+            cmd+=" -ss "+XTime(beginMs).toString();
+        }
+        if(outMs>0){
+            cmd+=" -t "+XTime(outMs).toString();
+        }
         cmd += " -vn -y ";
         cmd += out;
         cout<<cmd<<endl;

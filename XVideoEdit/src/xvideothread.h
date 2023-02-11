@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-30 07:51:28
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-06 19:33:54
+ * @LastEditTime: 2023-02-07 08:50:07
  * @FilePath: /XVideoEdit/src/xvideothread.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -42,8 +42,14 @@ public:
     int high=0;
     int width2=0;
     int high2=0;
+    int totalMs=0;
     std::string src1file;
     std::string DstFile;
+
+    int begin=0;
+    int end=0;
+    void SetBegin(double p);
+    void SetEnd(double p);
 
     //当前位置
     double GetPos();
