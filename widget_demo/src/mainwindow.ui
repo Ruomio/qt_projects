@@ -61,7 +61,7 @@
   <customwidget>
    <class>MatView</class>
    <extends>QOpenGLWidget</extends>
-   <header>/home/papillon/Documents/All_Code/Qt_projeces/widget_demo/matview.h</header>
+   <header>/home/papillon/Documents/All_Code/Qt_projeces/widget_demo/src/matview.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
