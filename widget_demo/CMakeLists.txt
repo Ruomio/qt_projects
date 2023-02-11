@@ -27,6 +27,8 @@ set(PROJECT_SOURCES
         # 新增文件
         src/matview.h
         src/matview.cpp
+        src/XVideoThread.h
+        src/XVideoThread.cpp
 )
 
 

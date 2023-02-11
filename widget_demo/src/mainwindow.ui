@@ -54,6 +54,19 @@
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QPushButton" name="openButton">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>540</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>打开</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
@@ -82,5 +95,24 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>openButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>Open()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>255</x>
+     <y>558</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>256</x>
+     <y>-8</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
+ <slots>
+  <slot>Open()</slot>
+ </slots>
 </ui>
