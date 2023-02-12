@@ -109,23 +109,40 @@
    </hints>
   </connection>
   <connection>
+   <sender>capButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>OpenCap()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>349</x>
+     <y>552</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>348</x>
+     <y>-12</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
    <sender>videoButton</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
    <slot>Open()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>255</x>
-     <y>558</y>
+     <x>196</x>
+     <y>554</y>
     </hint>
     <hint type="destinationlabel">
-     <x>256</x>
-     <y>-8</y>
+     <x>196</x>
+     <y>-11</y>
     </hint>
    </hints>
   </connection>
  </connections>
  <slots>
+  <slot>OpenCap()</slot>
   <slot>Open()</slot>
  </slots>
 </ui>

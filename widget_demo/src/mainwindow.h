@@ -2,7 +2,7 @@
  * @Author: PapillonAz 1065940593@qq.com
  * @Date: 2023-02-11 10:39:30
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-11 16:28:27
+ * @LastEditTime: 2023-02-12 15:49:17
  * @FilePath: /widget_demo/src/mainwindow.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -29,6 +29,7 @@ private:
 
 public slots:
     void Open();
+    void OpenCap();
 
 };
 #endif // MAINWINDOW_H

@@ -2,13 +2,14 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-28 20:36:56
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-12 15:44:31
+ * @LastEditTime: 2023-02-12 18:10:08
  * @FilePath: /widget_demo/mainwindow.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "XVideoThread.h"
+#include <opencv2/highgui.hpp>
 #include <opencv2/videoio.hpp>
 #include <qglobal.h>
 #include <qnamespace.h>
@@ -34,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->src,
         SLOT(SetImage(cv::Mat))
     );
+
 }
 
 MainWindow::~MainWindow()
@@ -51,3 +53,16 @@ void MainWindow::Open(){
     }
 }
 
+void MainWindow::OpenCap(){
+    VideoCapture vc = VideoCapture(0);
+    if(!vc.isOpened()){
+        cout<<"打开摄像头失败！"<<endl;
+        return;
+    }
+    cout<<"打开摄像头成功 ！"<<endl;
+
+    if(!XVideoThread::Get()->OpenCap(vc)){
+        QMessageBox::information(0,"error"," open cap failed!");
+        return;
+    }
+}
