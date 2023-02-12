@@ -2,7 +2,7 @@
  * @Author: PapillonAz 1065940593@qq.com
  * @Date: 2023-02-11 12:49:47
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-12 11:23:40
+ * @LastEditTime: 2023-02-12 15:41:59
  * @FilePath: /widget_demo/src/XVideoThread.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -29,8 +29,8 @@ XVideoThread::XVideoThread()
 
 XVideoThread::~XVideoThread()
 {
-    mutex.lock();
-    mutex.unlock();
+    // mutex.lock();
+    // mutex.unlock();
     wait();
     quit();
 }
@@ -55,23 +55,35 @@ bool XVideoThread::Open(const std::string file){
 
 void XVideoThread::run(){
     Mat mat;
-    for(;;){
+    while(true){
         mutex.lock();
-        // 判断是否打开
-        if(!cap1.isOpened()){
-            msleep(5);
-            continue;
-        }
-        // 读一帧视频，并解码
-        if(!cap1.read(mat)){
-            // 防止耗尽cpu
-            msleep(5);
-            continue;
-        }
-        // 显示图像，传递信号，解耦
-
         
+        // 判断视频是否打开
+        if(!cap1.isOpened()){
+            mutex.unlock();
+            msleep(5);
+            continue;
+        }
+
+        // 阶段结束位置
+        int cur = cap1.get(CAP_PROP_POS_FRAMES);
+        // 读一帧视频，解码并颜色转换
+        if(!cap1.read(mat)||mat.empty()){
+            mutex.unlock();
+            // 最后一帧，主动释放
+            msleep(5);
+            continue;
+        }
+
+
+        // 显示图像
+        ViewVideo(mat);
+         
+        // 计算睡眠时间
+        int s=0;
+        s=1000/fps;
         mutex.unlock();
+        msleep(s);
     }
 
 }
