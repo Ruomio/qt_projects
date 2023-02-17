@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-29 10:51:11
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-17 10:09:10
+ * @LastEditTime: 2023-02-17 15:03:06
  * @FilePath: /widget_demo/matview.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -48,7 +48,7 @@ void MatView::SetImage(cv::Mat mat){
     
     // 加载特征文件
     CascadeClassifier faceCascade;
-    string haar_face_datapath = "../haarcascade_frontalface_alt2.xml";
+    string haar_face_datapath = "../trains/haarcascade_frontalface_alt2.xml";
     if (!faceCascade.load(haar_face_datapath)){
 		cout << "人脸检测级联分类器没找到！！" << endl;
 		return;
