@@ -2,12 +2,12 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-29 10:51:11
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-15 14:40:26
+ * @LastEditTime: 2023-02-17 10:09:10
  * @FilePath: /widget_demo/matview.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 #include "matview.h"
-#include <opencv2/videoio.hpp>
+#include <opencv4/opencv2/videoio.hpp>
 #include <qthread.h>
 #include <opencv4/opencv2/imgcodecs.hpp>
 #include <opencv4/opencv2/core.hpp>
@@ -19,9 +19,9 @@
 #include <iostream>
 #include <qnamespace.h>
 #include <qpoint.h>
-#include <opencv2/opencv.hpp>
-#include <opencv2/imgproc/imgproc_c.h>
-#include <opencv2/freetype.hpp>
+#include <opencv4/opencv2/opencv.hpp>
+#include <opencv4/opencv2/imgproc/imgproc_c.h>
+// #include <opencv4/opencv2/freetype.hpp>
 
 using namespace cv;
 using namespace std;
@@ -45,6 +45,7 @@ MatView::~MatView(){
 }
 
 void MatView::SetImage(cv::Mat mat){
+    
     // 加载特征文件
     CascadeClassifier faceCascade;
     string haar_face_datapath = "../haarcascade_frontalface_alt2.xml";

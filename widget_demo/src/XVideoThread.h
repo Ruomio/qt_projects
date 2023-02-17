@@ -2,7 +2,7 @@
  * @Author: PapillonAz 1065940593@qq.com
  * @Date: 2023-02-11 12:49:47
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-12 16:42:44
+ * @LastEditTime: 2023-02-16 15:04:50
  * @FilePath: /widget_demo/src/XVideoThread.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -13,8 +13,8 @@
 #include <qtmetamacros.h>
 #include <QMutex>
 #include <QThread>
-#include <opencv2/core.hpp>
-#include <opencv2/opencv.hpp>
+#include <opencv4/opencv2/core.hpp>
+#include <opencv4/opencv2/opencv.hpp>
 #pragma once
 
 class XVideoThread:public QThread
