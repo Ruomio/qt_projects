@@ -2,11 +2,12 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-29 10:51:11
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-17 15:03:06
+ * @LastEditTime: 2023-02-18 14:20:45
  * @FilePath: /widget_demo/matview.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 #include "matview.h"
+#include "MatPro.h"
 #include <opencv4/opencv2/videoio.hpp>
 #include <qthread.h>
 #include <opencv4/opencv2/imgcodecs.hpp>
@@ -45,35 +46,17 @@ MatView::~MatView(){
 }
 
 void MatView::SetImage(cv::Mat mat){
-    
-    // 加载特征文件
-    CascadeClassifier faceCascade;
-    string haar_face_datapath = "../trains/haarcascade_frontalface_alt2.xml";
-    if (!faceCascade.load(haar_face_datapath)){
-		cout << "人脸检测级联分类器没找到！！" << endl;
-		return;
-	}
-    // 图像预处理，减少计算量
-    Mat mat_gray;
-    cvtColor(mat, mat_gray, COLOR_BGR2GRAY);    // 灰度图
-    equalizeHist(mat_gray, mat_gray);   // 直方图均值化
-    pyrDown(mat_gray, mat_gray);    // 高斯模糊，向下采样，像素量为原来 1/4
-    
-    vector<Rect> faces;
-	faceCascade.detectMultiScale(mat_gray, faces, 1.2, 5, 0, Size(30, 30));
-    for (auto b : faces) {
-		cout << "输出一张人脸位置：(x,y):" << "(" << b.x << "," << b.y << ") , (width,height):(" << b.width << "," << b.height << ")" << endl;
-	}
-    if (faces.size()>0) {
-		for (size_t i = 0; i<faces.size(); i++) {
-			// putText(img, "face", cvPoint(faces[i].x, faces[i].y - 10), FONT_HERSHEY_PLAIN, 2.0, Scalar(0, 0, 255));
-			cv::putText(mat, "face", cvPoint(faces[i].x *2, faces[i].y *2 - 10), FONT_HERSHEY_PLAIN, 2.0, Scalar(0, 0, 255));
-			
 
-			cv::rectangle(mat, Point(faces[i].x *2, faces[i].y *2), Point(faces[i].x *2 + faces[i].width*2, faces[i].y *2 + faces[i].height*2), Scalar(0, 0, 255), 1, 8);
-			cout << faces[i] << endl;
-		}
-	}
+    // 图像预处理，减少计算量
+    Mat afterProcess;
+    afterProcess = MatPro::Get()->preProcess(mat);
+
+    // 训练人脸模型
+    
+
+    
+    // 检测人脸并框选
+    MatPro::Get()->detectFace(mat, afterProcess);
 
  
 

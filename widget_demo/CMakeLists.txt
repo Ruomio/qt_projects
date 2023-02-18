@@ -29,6 +29,8 @@ set(PROJECT_SOURCES
         src/matview.cpp
         src/XVideoThread.h
         src/XVideoThread.cpp
+        src/MatPro.h
+        src/MatPro.cpp
 )
 
 
