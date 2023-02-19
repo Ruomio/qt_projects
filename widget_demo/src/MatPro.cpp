@@ -2,12 +2,13 @@
  * @Author: PapillonAz 1065940593@qq.com
  * @Date: 2023-02-17 15:27:16
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-19 17:56:50
+ * @LastEditTime: 2023-02-19 20:28:57
  * @FilePath: /widget_demo/src/MatPro.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 #include "MatPro.h"
 #include <libmodplug/stdafx.h>
+#include <opencv2/core/utility.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv4/opencv2/core/types.hpp>
 #include <opencv4/opencv2/face/facerec.hpp>
@@ -46,90 +47,131 @@ cv::Mat MatPro::funTrain(cv::Mat src, int lable){
 }
 
 void MatPro::faceTrain(){
+    // 加载特征文件
+    CascadeClassifier faceCascade;
+    string haar_face_datapath = "/home/papillon/Documents/All_Code/Qt_projeces/widget_demo/trains/haarcascade_frontalface_alt2.xml";
+    if (!faceCascade.load(haar_face_datapath)){
+		cout << "人脸检测级联分类器没找到！！" << endl;
+		return;
+	}
+    vector<Rect> faces;
+	
+
+
+
     model = cv::face::FisherFaceRecognizer::create();
-    model->read("../trains/face_train.model");
-    if(!model->empty()){
-        cout<<"模型已存在！"<<endl;
-        return;
+    // model = cv::face::EigenFaceRecognizer::create();
+
+    // model->read("/home/papillon/Documents/All_Code/Qt_projeces/widget_demo/trains/face_train.model");
+    // if(!model->empty()){
+    //     cout<<"模型已存在！"<<endl;
+    //     return;
+    // }
+
+    
+    Mat src;
+    // 遍历图片 lable=0
+    string pattern="/home/papillon/Documents/All_Code/Qt_projeces/widget_demo/trains/images/merchant/bezos_*.jpeg";
+    vector<cv::String> res;
+    glob(pattern, res);
+    cout<<"bezos"<<res.size()<<endl;
+    for(int i=0; i<res.size(); i++){
+        src=imread(res[i]);
+        // 预处理
+        cvtColor(src, src, COLOR_BGR2GRAY);
+        equalizeHist(src, src);
+        // 裁切人脸区域
+        faceCascade.detectMultiScale(src, faces, 1.2, 5, 0, Size(30, 30));
+        // 检测到多张人脸舍去
+        if(faces.size()!=1){
+            continue;
+        }
+        src=src(Rect(faces[0].x, faces[0].y, faces[0].width, faces[0].height));
+        resize(src, src, Size(300,300));
+        MatPro::Get()->funTrain(src, 0);
     }
-
-    Mat src=imread("../trains/images/cjm.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 0);
-    src=imread("../trains/images/dgy.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 1);
-    src=imread("../trains/images/fcy.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 2);
-    src=imread("../trains/images/fzs.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 3);
-    src=imread("../trains/images/fzw.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 4);
-    src=imread("../trains/images/ht.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 5);
-    src=imread("../trains/images/jcy.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 6);
-    src=imread("../trains/images/lml.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 7);
-    src=imread("../trains/images/py.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 8);
-    src=imread("../trains/images/qyy.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 9);
-    src=imread("../trains/images/tsl.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 10);
-    src=imread("../trains/images/xj.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 11);
-    src=imread("../trains/images/yjf.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 12);
-    src=imread("../trains/images/zbp.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 13);
-    src=imread("../trains/images/zdx.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 14);
-    src=imread("../trains/images/zk.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 15);
-    src=imread("../trains/images/zl.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 16);
-    src=imread("../trains/images/zwl.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 17);
-    src=imread("../trains/images/zxq.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 18);
-    src=imread("../trains/images/zyp.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 19);
-    src=imread("../trains/images/zzl.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 20);
-    src=imread("../trains/images/ppz.png",IMREAD_GRAYSCALE);
-    resize(src, src, Size(300,300));
-    MatPro::Get()->funTrain(src, 21);
-
+    // 遍历图片 lable=1
+    pattern="/home/papillon/Documents/All_Code/Qt_projeces/widget_demo/trains/images/merchant/bill_*.jpeg";
+    glob(pattern, res);
+    cout<<"bill"<<res.size()<<endl;
+    for(int i=0; i<res.size(); i++){
+        src=imread(res[i]);
+        cvtColor(src, src, COLOR_BGR2GRAY);
+        equalizeHist(src, src);
+        // 裁切人脸区域
+        faceCascade.detectMultiScale(src, faces, 1.2, 5, 0, Size(30, 30));
+        // 检测到多张人脸舍去
+        if(faces.size()!=1){
+            continue;
+        }
+        src=src(Rect(faces[0].x, faces[0].y, faces[0].width, faces[0].height));
+        resize(src, src, Size(300,300));
+        MatPro::Get()->funTrain(src, 1);
+    }
+    // 遍历图片 lable=2
+    pattern="/home/papillon/Documents/All_Code/Qt_projeces/widget_demo/trains/images/merchant/jack_ma_*.jpeg";
+    glob(pattern, res);
+    cout<<"jack_ma"<<res.size()<<endl;
+    for(int i=0; i<res.size(); i++){
+        src=imread(res[i]);
+        cvtColor(src, src, COLOR_BGR2GRAY);
+        equalizeHist(src, src);
+        // 裁切人脸区域
+        faceCascade.detectMultiScale(src, faces, 1.2, 5, 0, Size(30, 30));
+        // 检测到多张人脸舍去
+        if(faces.size()!=1){
+            continue;
+        }
+        src=src(Rect(faces[0].x, faces[0].y, faces[0].width, faces[0].height));
+        resize(src, src, Size(300,300));
+        MatPro::Get()->funTrain(src, 2);
+    }
+    // 遍历图片 lable=3
+    pattern="/home/papillon/Documents/All_Code/Qt_projeces/widget_demo/trains/images/merchant/mask_*.jpeg";
+    glob(pattern, res);
+    cout<<"mask"<<res.size()<<endl;
+    for(int i=0; i<res.size(); i++){
+        src=imread(res[i]);
+        cvtColor(src, src, COLOR_BGR2GRAY);
+        equalizeHist(src, src);
+        // 裁切人脸区域
+        faceCascade.detectMultiScale(src, faces, 1.2, 5, 0, Size(30, 30));
+        // 检测到多张人脸舍去
+        if(faces.size()!=1){
+            continue;
+        }
+        src=src(Rect(faces[0].x, faces[0].y, faces[0].width, faces[0].height));
+        resize(src, src, Size(300,300));
+        MatPro::Get()->funTrain(src, 3);
+    }
+    // 遍历图片 lable=4
+    pattern="/home/papillon/Documents/All_Code/Qt_projeces/widget_demo/trains/images/merchant/ppz_*.png";
+    glob(pattern, res);
+    cout<<"ppz"<<res.size()<<endl;
+    for(int i=0; i<res.size(); i++){
+        src=imread(res[i]);
+        cvtColor(src, src, COLOR_BGR2GRAY);
+        equalizeHist(src, src);
+        // 裁切人脸区域
+        faceCascade.detectMultiScale(src, faces, 1.2, 5, 0, Size(30, 30));
+        // 检测到多张人脸舍去
+        if(faces.size()!=1){
+            continue;
+        }
+        src=src(Rect(faces[0].x, faces[0].y, faces[0].width, faces[0].height));
+        resize(src, src, Size(300,300));
+        MatPro::Get()->funTrain(src, 4);
+    }
     
     model->train(images, labels);
     cout<<"模型训练完成"<<endl;
-    model->save("../trains/face_train.model");
+    model->save("/home/papillon/Documents/All_Code/Qt_projeces/widget_demo/trains/face_train.model");
 }
 
 void MatPro::detectFace(cv::Mat mat,cv::Mat afterProcess, int predic, double alpha_w, double alpha_h){
     // 加载特征文件
     CascadeClassifier faceCascade;
-    string haar_face_datapath = "../trains/haarcascade_frontalface_alt2.xml";
+    string haar_face_datapath = "/home/papillon/Documents/All_Code/Qt_projeces/widget_demo/trains/haarcascade_frontalface_alt2.xml";
     if (!faceCascade.load(haar_face_datapath)){
 		cout << "人脸检测级联分类器没找到！！" << endl;
 		return;
@@ -138,28 +180,12 @@ void MatPro::detectFace(cv::Mat mat,cv::Mat afterProcess, int predic, double alp
     string str = "not know";
 
     switch (predic) {
-        case 0:  str="cjm";   break;
-        case 1:  str="dgy";   break;
-        case 2:  str="fcy";   break;
-        case 3:  str="fzs";   break;
-        case 4:  str="fzw";   break;
-        case 5:  str="ht";   break;
-        case 6:  str="jcy";   break;
-        case 7:  str="lml";   break;
-        case 8:  str="py";   break;
-        case 9:  str="qyy";   break;
-        case 10: str="tsl";    break;
-        case 11: str="xj";    break;
-        case 12: str="yjf";    break;
-        case 13: str="zbp";    break;
-        case 14: str="zdx";    break;
-        case 15: str="zk";    break;
-        case 16: str="zl";    break;
-        case 17: str="zwl";    break;
-        case 18: str="zxq";    break;
-        case 19: str="zyp";    break;
-        case 20: str="zzl";    break;
-        case 21: str="ppz";    break;
+        case 0:  str="bezos";   break;
+        case 1:  str="bill";   break;
+        case 2:  str="jack_ma";   break;
+        case 3:  str="mask";   break;
+        case 4:  str="ppz";   break;
+       
         default: break;
 
     }
