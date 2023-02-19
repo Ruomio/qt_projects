@@ -2,12 +2,13 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-28 20:36:56
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-16 15:04:21
+ * @LastEditTime: 2023-02-19 17:34:06
  * @FilePath: /widget_demo/mainwindow.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "MatPro.h"
 #include "XVideoThread.h"
 #include <opencv4/opencv2/highgui.hpp>
 #include <opencv4/opencv2/videoio.hpp>
@@ -35,6 +36,9 @@ MainWindow::MainWindow(QWidget *parent)
         ui->src,
         SLOT(SetImage(cv::Mat))
     );
+
+    // 默认开始训练
+    MatPro::Get()->faceTrain();
 
 }
 
@@ -66,3 +70,4 @@ void MainWindow::OpenCap(){
         return;
     }
 }
+
