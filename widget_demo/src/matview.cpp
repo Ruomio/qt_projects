@@ -2,7 +2,7 @@
  * @Author: papillon 1065940593@qq.com
  * @Date: 2023-01-29 10:51:11
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-18 14:20:45
+ * @LastEditTime: 2023-02-19 15:35:41
  * @FilePath: /widget_demo/matview.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -51,14 +51,17 @@ void MatView::SetImage(cv::Mat mat){
     Mat afterProcess;
     afterProcess = MatPro::Get()->preProcess(mat);
 
-    // 训练人脸模型
+    // // 训练人脸模型
+    MatPro::Get()->faceTrain();
     
-
+    // // 预测
+    cv::resize(afterProcess,afterProcess,Size(300,300));
+    int predic = MatPro::Get()->model->predict(afterProcess);
     
     // 检测人脸并框选
     MatPro::Get()->detectFace(mat, afterProcess);
 
- 
+
 
 
     if(this->img.isNull()){

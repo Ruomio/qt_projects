@@ -2,12 +2,16 @@
  * @Author: PapillonAz 1065940593@qq.com
  * @Date: 2023-02-17 15:27:16
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-18 14:22:16
+ * @LastEditTime: 2023-02-19 15:35:26
  * @FilePath: /widget_demo/src/MatPro.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 #include "MatPro.h"
-#include <opencv2/core/types.hpp>
+#include <libmodplug/stdafx.h>
+#include <opencv2/imgproc.hpp>
+#include <opencv4/opencv2/core/types.hpp>
+#include <opencv4/opencv2/face/facerec.hpp>
+#include <opencv4/opencv2/objdetect.hpp>
 
 using namespace cv;
 using namespace std;
@@ -35,14 +39,85 @@ Mat  MatPro::preProcess(cv::Mat mat){
     return mat_gray;
 }
 
-cv::Mat MatPro::funTrain(cv::Mat src, string lable){
+cv::Mat MatPro::funTrain(cv::Mat src, int lable){
     images.push_back(src);
     labels.push_back(lable);
     return src;
 }
 
-void MatPro::detectFace(cv::Mat mat,cv::Mat afterProcess, std::string str){
-     // 加载特征文件
+void MatPro::faceTrain(){
+
+    Mat src=imread("../trains/images/cjm.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 0);
+    src=imread("../trains/images/dgy.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 1);
+    src=imread("../trains/images/fcy.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 2);
+    src=imread("../trains/images/fzs.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 3);
+    src=imread("../trains/images/fzw.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 4);
+    src=imread("../trains/images/ht.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 5);
+    src=imread("../trains/images/jcy.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 6);
+    src=imread("../trains/images/lml.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 7);
+    src=imread("../trains/images/py.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 8);
+    src=imread("../trains/images/qyy.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 9);
+    src=imread("../trains/images/tsl.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 10);
+    src=imread("../trains/images/xj.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 11);
+    src=imread("../trains/images/yjf.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 12);
+    src=imread("../trains/images/zbp.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 13);
+    src=imread("../trains/images/zdx.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 14);
+    src=imread("../trains/images/zk.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 15);
+    src=imread("../trains/images/zl.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 16);
+    src=imread("../trains/images/zwl.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 17);
+    src=imread("../trains/images/zxq.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 18);
+    src=imread("../trains/images/zyp.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 19);
+    src=imread("../trains/images/zzl.png",IMREAD_GRAYSCALE);
+    resize(src, src, Size(300,300));
+    MatPro::Get()->funTrain(src, 20);
+
+    model = cv::face::FisherFaceRecognizer::create();
+    model->train(images, labels);
+    
+}
+
+void MatPro::detectFace(cv::Mat mat,cv::Mat afterProcess, int predic){
+    // 加载特征文件
     CascadeClassifier faceCascade;
     string haar_face_datapath = "../trains/haarcascade_frontalface_alt2.xml";
     if (!faceCascade.load(haar_face_datapath)){
@@ -50,7 +125,34 @@ void MatPro::detectFace(cv::Mat mat,cv::Mat afterProcess, std::string str){
 		return;
 	}
     
+    string str = "face";
+
+    switch (predic) {
+        case 0:  str="cjm";   break;
+        case 1:  str="dgy";   break;
+        case 2:  str="fcy";   break;
+        case 3:  str="fzs";   break;
+        case 4:  str="fzw";   break;
+        case 5:  str="ht";   break;
+        case 6:  str="jcy";   break;
+        case 7:  str="lml";   break;
+        case 8:  str="py";   break;
+        case 9:  str="qyy";   break;
+        case 10: str="tsl";    break;
+        case 11: str="xj";    break;
+        case 12: str="yjf";    break;
+        case 13: str="zbp";    break;
+        case 14: str="zdx";    break;
+        case 15: str="zk";    break;
+        case 16: str="zl";    break;
+        case 17: str="zwl";    break;
+        case 18: str="zxq";    break;
+        case 19: str="zyp";    break;
+        case 20: str="zzl";    break;
+
+    }
     
+
     vector<Rect> faces;
 	faceCascade.detectMultiScale(afterProcess, faces, 1.2, 5, 0, Size(30, 30));
     for (auto b : faces) {

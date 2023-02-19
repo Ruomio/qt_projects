@@ -10,11 +10,15 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # opencv
-set(OpenCV_DIR /usr/lib/opencv4)
+# set(OpenCV_DIR /usr/lib/cmake/opencv4)
+set(OpenCV_DIR /usr/lib/cmake/opencv4/)
 include_directories(${OpenCV_INCLUDE_DIRS})
 find_package(OpenCV REQUIRED)
 
 # end
+
+MESSAGE(STATUS "----------------Current path : ${OpenCV_DIR}")
+MESSAGE(STATUS "----------------Current path : ${OpenCV_INCLUDE_DIRS}")
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets OpenGLWidgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets OpenGLWidgets)
