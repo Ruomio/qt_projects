@@ -2,7 +2,7 @@
  * @Author: PapillonAz 1065940593@qq.com
  * @Date: 2023-02-17 15:27:16
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-19 17:46:41
+ * @LastEditTime: 2023-02-19 17:56:50
  * @FilePath: /widget_demo/src/MatPro.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -46,6 +46,12 @@ cv::Mat MatPro::funTrain(cv::Mat src, int lable){
 }
 
 void MatPro::faceTrain(){
+    model = cv::face::FisherFaceRecognizer::create();
+    model->read("../trains/face_train.model");
+    if(!model->empty()){
+        cout<<"模型已存在！"<<endl;
+        return;
+    }
 
     Mat src=imread("../trains/images/cjm.png",IMREAD_GRAYSCALE);
     resize(src, src, Size(300,300));
@@ -114,7 +120,7 @@ void MatPro::faceTrain(){
     resize(src, src, Size(300,300));
     MatPro::Get()->funTrain(src, 21);
 
-    model = cv::face::FisherFaceRecognizer::create();
+    
     model->train(images, labels);
     cout<<"模型训练完成"<<endl;
     model->save("../trains/face_train.model");
