@@ -2,7 +2,7 @@
  * @Author: PapillonAz 1065940593@qq.com
  * @Date: 2023-02-17 15:27:16
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-19 17:55:21
+ * @LastEditTime: 2023-02-22 08:21:47
  * @FilePath: /widget_demo/src/MatPro.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -15,7 +15,7 @@
 #include <opencv4/opencv2/face.hpp>
 #include <libmodplug/stdafx.h>
 #include <iostream>
-#include <vector>
+
 
 #pragma once
 
@@ -43,6 +43,8 @@ public:
     void faceTrain();
 
     void detectFace(cv::Mat mat, cv::Mat afterProcess, int predic=-1, double alpha_w=1, double alpha_h=1);
+
+    void GetFileNames(std::string path,std::vector<std::string>& filenames);
     
 
 protected:
