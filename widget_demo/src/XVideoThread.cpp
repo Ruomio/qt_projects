@@ -2,13 +2,14 @@
  * @Author: PapillonAz 1065940593@qq.com
  * @Date: 2023-02-11 12:49:47
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-19 17:38:10
+ * @LastEditTime: 2023-02-25 10:57:16
  * @FilePath: /widget_demo/src/XVideoThread.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 #include "XVideoThread.h"
 #include <iostream>
 #include <iterator>
+#include <opencv2/core/core_c.h>
 #include <opencv4/opencv2/core/mat.hpp>
 #include <opencv4/opencv2/videoio.hpp>
 #include <opencv4/opencv2/imgcodecs.hpp>
@@ -30,7 +31,8 @@ XVideoThread::XVideoThread()
 }
 
 XVideoThread::~XVideoThread()
-{
+{   
+    this->Clear();
     wait();
     quit();
 }
@@ -88,6 +90,9 @@ void XVideoThread::run(){
 
         // 显示图像
         ViewVideo(mat);
+
+        // 释放内存
+        mat.release();
         
         // 计算睡眠时间
         int s=0;
@@ -99,4 +104,8 @@ void XVideoThread::run(){
         msleep(s);
     }
 
+}
+
+void XVideoThread::Clear(){
+    cap1.release();
 }

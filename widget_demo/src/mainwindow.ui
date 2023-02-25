@@ -38,22 +38,6 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="closeButton">
-    <property name="geometry">
-     <rect>
-      <x>769</x>
-      <y>0</y>
-      <width>31</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>X</string>
-    </property>
-    <property name="flat">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QPushButton" name="videoButton">
     <property name="geometry">
      <rect>
@@ -92,22 +76,6 @@
  </customwidgets>
  <resources/>
  <connections>
-  <connection>
-   <sender>closeButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>779</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>521</x>
-     <y>-15</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>capButton</sender>
    <signal>clicked()</signal>
