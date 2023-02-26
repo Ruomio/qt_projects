@@ -2,11 +2,12 @@
  * @Author: PapillonAz 1065940593@qq.com
  * @Date: 2023-02-17 15:27:16
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-25 15:05:41
+ * @LastEditTime: 2023-02-26 10:09:06
  * @FilePath: /widget_demo/src/MatPro.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 #include "MatPro.h"
+#include <exception>
 #include <libmodplug/stdafx.h>
 #include <opencv2/core.hpp>
 #include <opencv2/core/utility.hpp>
@@ -62,8 +63,15 @@ void MatPro::faceTrain(){
     model = cv::face::FisherFaceRecognizer::create();
     // model = cv::face::LBPHFaceRecognizer::create();
 
-    // model->read("/home/papillon/Documents/All_Code/Qt_projeces/widget_demo/trains/face_train.yml");
+    try {
+        model->read("/home/papillon/Documents/All_Code/Qt_projeces/widget_demo/trains/face_train.yml");
+        cout<<"模型加载完成！！！"<<endl;
+        return;
+    } catch (exception &e) {
+        cout<<"正在训练..."<<endl;
+    }
     // if(!model->empty()){
+    //     model->read("/home/papillon/Documents/All_Code/Qt_projeces/widget_demo/trains/face_train.yml");
     //     cout<<"模型已存在！"<<endl;
     //     return;
     // }
@@ -78,8 +86,9 @@ void MatPro::faceTrain(){
     GetFileNames(path, filenames);
     int i=0;
     // for(auto name : filenames){
-    for(i=0;i<3;i++){
+    for(i=0;i<5;i++){
         string name = filenames[i];
+        // cout<<name<<endl;
         glob(name, res);
         for(int j=0; j<res.size(); j++){
             src=imread(res[j]);
@@ -125,8 +134,8 @@ void MatPro::detectFace(cv::Mat mat,cv::Mat afterProcess, int predic, double alp
         case 1: str="Lili Reinhart";            break;
         case 2: str="Elizabeth Lail";           break;
         case 3: str="Tuppence Middleton";       break;
-        // case 4: str="jeff bezos";               break;
-        // case 5: str="Maisie Williams";          break;
+        case 4: str="jeff bezos";               break;
+        case 5: str="Maisie Williams";          break;
         // case 6: str="Chris Evans";              break;
         // case 7: str="Morena Baccarin";          break;
         // case 8: str="Brie Larson";              break;
