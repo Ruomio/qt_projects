@@ -2,7 +2,7 @@
  * @Author: PapillonAz 1065940593@qq.com
  * @Date: 2023-02-17 15:27:16
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-02-26 10:09:06
+ * @LastEditTime: 2023-04-01 13:41:40
  * @FilePath: /widget_demo/src/MatPro.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -245,7 +245,7 @@ void MatPro::detectFace(cv::Mat mat,cv::Mat afterProcess, int predic, double alp
     // CascadeClassifier faceCascade;
     string haar_face_datapath = "/home/papillon/Documents/All_Code/Qt_projeces/widget_demo/trains/haarcascade_frontalface_alt2.xml";
     if(faceCascade.empty()){
-        cout << "人脸检测级联分类器为空！！" << endl;
+        // cout << "人脸检测级联分类器为空！！" << endl;
         if (!faceCascade.load(haar_face_datapath)){
             cout << "人脸检测级联分类器没找到！！" << endl;
             return;
