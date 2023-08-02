@@ -12,7 +12,7 @@
 #### 安装教程
 
 1.  Qt，OpenCV，Cmake，Make工具
-2.  进入到项目CmakeLists目录，使用cmake命令，会在build文件夹生成可执行文件
+2.  进入到项目CmakeLists目录，新建build文件夹，进入到build文件夹 使用`cmake ..`命令，会在build文件夹生成可执行文件
 
 #### 使用说明
 
