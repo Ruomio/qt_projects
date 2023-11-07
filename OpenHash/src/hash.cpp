@@ -60,9 +60,9 @@ int main() {
     addFromFile(&dictionary);
 
     // 向字典插入词汇
-    // dictionary.Insert("apple", "苹果");
-    // dictionary.Insert("banana", "香蕉");
-    // dictionary.Insert("car", "汽车");
+    dictionary.Insert("apple", "苹果");
+    dictionary.Insert("banana", "香蕉");
+    dictionary.Insert("car", "汽车");
     // ...
 
     // 搜索词汇
@@ -82,6 +82,12 @@ int main() {
     } else {
         std::cout << "未找到该词汇" << std::endl;
     }
+    if (dictionary.Search("apple", value)) {
+        std::cout << "中文翻译：" << value << std::endl;
+    } else {
+        std::cout << "未找到该词汇" << std::endl;
+    }
+
 
     // 删除词汇
     if (dictionary.Remove("active")) {

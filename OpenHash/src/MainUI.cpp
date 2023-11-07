@@ -117,22 +117,30 @@ void MainUI::ConnectInit() {
 
 void MainUI::DictsInit() {
     dictionary = new OpenHashTable<std::string, std::string>(1000);
-    std::cout << dictionary->capacity << std::endl;
     addFromFile(dictionary);
-    std::cout << dictionary->capacity << std::endl;
 }
 
 
 
 
 void MainUI::InsertBtn_Slot() {
+    std::string word_tem = insert_input_word->text().toStdString();
+    std::string trans_tem = insert_input_trans->text().toStdString();
+    dictionary->Insert(word_tem, trans_tem);
+    
     tips = QStringLiteral("插入成功！！\n");
     console->insertPlainText(tips);
 
 }
 
 void MainUI::DeleteBtn_Slot() {
-    tips = QStringLiteral("删除成功！！\n");
+    std::string word_tem = delete_input_word->text().toStdString();
+    if(dictionary->Remove(word_tem)) {
+        tips = QStringLiteral("删除成功！！\n");
+    }
+    else {
+        tips = QStringLiteral("删除失败！！\n");
+    }
     console->insertPlainText(tips);
 }
 

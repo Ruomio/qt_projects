@@ -53,8 +53,9 @@ public:
         table[index].occupied = true;
         size++;
         
-        if(size == capacity - 1) {      // 避免插满，否在在search函数会造成无限查询
+        if(size == capacity - 1) {      // 避免插满，否则在search函数会造成无限查询
             capacity = capacity + 10;
+            table.resize(capacity);
         }
     }
 
