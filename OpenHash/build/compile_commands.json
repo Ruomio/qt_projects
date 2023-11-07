@@ -1,0 +1,26 @@
+[
+{
+  "directory": "/home/papillon/Documents/All_codes/qt_projects/OpenHash/build",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/papillon/Documents/All_codes/qt_projects/OpenHash/build/OpenHash_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -g -std=gnu++17 -fPIC -o CMakeFiles/OpenHash.dir/OpenHash_autogen/mocs_compilation.cpp.o -c /home/papillon/Documents/All_codes/qt_projects/OpenHash/build/OpenHash_autogen/mocs_compilation.cpp",
+  "file": "/home/papillon/Documents/All_codes/qt_projects/OpenHash/build/OpenHash_autogen/mocs_compilation.cpp",
+  "output": "CMakeFiles/OpenHash.dir/OpenHash_autogen/mocs_compilation.cpp.o"
+},
+{
+  "directory": "/home/papillon/Documents/All_codes/qt_projects/OpenHash/build",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/papillon/Documents/All_codes/qt_projects/OpenHash/build/OpenHash_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -g -std=gnu++17 -fPIC -o CMakeFiles/OpenHash.dir/src/hash.cpp.o -c /home/papillon/Documents/All_codes/qt_projects/OpenHash/src/hash.cpp",
+  "file": "/home/papillon/Documents/All_codes/qt_projects/OpenHash/src/hash.cpp",
+  "output": "CMakeFiles/OpenHash.dir/src/hash.cpp.o"
+},
+{
+  "directory": "/home/papillon/Documents/All_codes/qt_projects/OpenHash/build",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/papillon/Documents/All_codes/qt_projects/OpenHash/build/OpenHash_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -g -std=gnu++17 -fPIC -o CMakeFiles/OpenHash.dir/src/main.cpp.o -c /home/papillon/Documents/All_codes/qt_projects/OpenHash/src/main.cpp",
+  "file": "/home/papillon/Documents/All_codes/qt_projects/OpenHash/src/main.cpp",
+  "output": "CMakeFiles/OpenHash.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/papillon/Documents/All_codes/qt_projects/OpenHash/build",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/papillon/Documents/All_codes/qt_projects/OpenHash/build/OpenHash_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -g -std=gnu++17 -fPIC -o CMakeFiles/OpenHash.dir/src/MainUI.cpp.o -c /home/papillon/Documents/All_codes/qt_projects/OpenHash/src/MainUI.cpp",
+  "file": "/home/papillon/Documents/All_codes/qt_projects/OpenHash/src/MainUI.cpp",
+  "output": "CMakeFiles/OpenHash.dir/src/MainUI.cpp.o"
+}
+]
