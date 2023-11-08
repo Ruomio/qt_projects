@@ -161,8 +161,17 @@ void MainUI::SelectBtn_Slot() {
 }
 
 void MainUI::ShowAllBtn_SLot() {
-    tips = QStringLiteral("展示所有！！\n");
-    console->insertPlainText(tips);
+    for(int i = 0; i < dictionary->table.capacity(); i++) {
+        if(dictionary->table[i].occupied) {
+            QString tem_key = QString::fromStdString(dictionary->table[i].key);
+            QString tem_value = QString::fromStdString(dictionary->table[i].value);
+
+            tips = tem_key + QStringLiteral("\r") + tem_value + QStringLiteral("\n\n");
+            console->insertPlainText(tips);
+        }
+    }
+    // tips = QStringLiteral("展示所有！！\n");
+    // console->insertPlainText(tips);
 }
 
 void MainUI::ClearAllBtn_SLot() {
