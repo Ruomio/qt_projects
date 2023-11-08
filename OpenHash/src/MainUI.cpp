@@ -116,7 +116,7 @@ void MainUI::ConnectInit() {
 
 
 void MainUI::DictsInit() {
-    dictionary = new OpenHashTable<std::string, std::string>(1000);
+    dictionary = new OpenHashTable<std::string, std::string>(1010);
     addFromFile(dictionary);
 }
 
@@ -126,9 +126,13 @@ void MainUI::DictsInit() {
 void MainUI::InsertBtn_Slot() {
     std::string word_tem = insert_input_word->text().toStdString();
     std::string trans_tem = insert_input_trans->text().toStdString();
-    dictionary->Insert(word_tem, trans_tem);
+    if(!dictionary->Insert(word_tem, trans_tem)) {
+        tips = QStringLiteral("插入失败,容量不足！！\n");
+    }
+    else {
+        tips = QStringLiteral("插入成功！！\n");
+    }
     
-    tips = QStringLiteral("插入成功！！\n");
     console->insertPlainText(tips);
 
 }

@@ -33,14 +33,17 @@ public:
         table.resize(capacity);
     }
 
-    void Insert(const KeyType& key, const ValueType& value) {
+    bool Insert(const KeyType& key, const ValueType& value) {
+        if(size == capacity - 1) {      // 避免插满，否则在search函数会造成无限查询
+            return false;
+        }
         size_t index = HashFunction(key);
 
         while (table[index].occupied) {
             if (table[index].key == key) {
                 // 键已存在，更新值
                 table[index].value = value;
-                return;
+                return true;
             }
 
             index = (index + 1) % capacity; // 线性探测寻找下一个空槽
@@ -53,10 +56,7 @@ public:
         table[index].occupied = true;
         size++;
         
-        if(size == capacity - 1) {      // 避免插满，否则在search函数会造成无限查询
-            capacity = capacity + 10;
-            table.resize(capacity);
-        }
+        return true;        
     }
 
     bool Search(const KeyType& key, ValueType& value) const {
