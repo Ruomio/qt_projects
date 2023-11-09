@@ -3,7 +3,9 @@
 
 ## 介绍
 widget_demo: 基于QT，OpenCV的基于OpenCV的人脸识别项目
+
 XVideoEdit: 基于QT，OpenCV简易视频编辑器项目 
+
 OpenHash: 哈希表实现词典，带QT界面
 
 ## 软件架构
