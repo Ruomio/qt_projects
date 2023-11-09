@@ -1,0 +1,23 @@
+{
+	"BUILD_DIR" : "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/XVideoEdit_autogen",
+	"CMAKE_BINARY_DIR" : "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit",
+	"CMAKE_SOURCE_DIR" : "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit",
+	"INCLUDE_DIR" : "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/XVideoEdit_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/resource/\u64ad\u653e2.png",
+		"/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/resource/\u6682\u505c.png"
+	],
+	"LOCK_FILE" : "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/CMakeFiles/XVideoEdit_autogen.dir/AutoRcc_XVideoUI_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "XVideoUI" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_XVideoUI.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt6/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/CMakeFiles/XVideoEdit_autogen.dir/AutoRcc_XVideoUI_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/XVideoUI.qrc",
+	"VERBOSITY" : 0
+}

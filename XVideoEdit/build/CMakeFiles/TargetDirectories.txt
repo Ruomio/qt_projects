@@ -1,0 +1,9 @@
+/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/CMakeFiles/XVideoEdit.dir
+/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/CMakeFiles/edit_cache.dir
+/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/CMakeFiles/rebuild_cache.dir
+/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/CMakeFiles/list_install_components.dir
+/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/CMakeFiles/install.dir
+/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/CMakeFiles/install/local.dir
+/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/CMakeFiles/install/strip.dir
+/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/CMakeFiles/XVideoEdit_autogen_timestamp_deps.dir
+/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/CMakeFiles/XVideoEdit_autogen.dir

@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-23a9f5e29e5ff4fed653.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "XVideoEdit",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "XVideoEdit::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-XVideoEdit-Debug-9b5b3c2e266ae570adf3.json",
+					"name" : "XVideoEdit",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "XVideoEdit_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-XVideoEdit_autogen-Debug-89a0d61edf7a8282f9e2.json",
+					"name" : "XVideoEdit_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "XVideoEdit_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-XVideoEdit_autogen_timestamp_deps-Debug-bb349e99fa9b22659c0d.json",
+					"name" : "XVideoEdit_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build",
+		"source" : "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

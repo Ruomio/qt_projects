@@ -1,0 +1,56 @@
+[
+{
+  "directory": "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -I/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/XVideoEdit_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtOpenGLWidgets -isystem /usr/include/qt6/QtOpenGL -isystem /usr/include/opencv4 -g -std=gnu++17 -fno-direct-access-external-data -o CMakeFiles/XVideoEdit.dir/XVideoEdit_autogen/mocs_compilation.cpp.o -c /home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/XVideoEdit_autogen/mocs_compilation.cpp",
+  "file": "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/XVideoEdit_autogen/mocs_compilation.cpp",
+  "output": "CMakeFiles/XVideoEdit.dir/XVideoEdit_autogen/mocs_compilation.cpp.o"
+},
+{
+  "directory": "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -I/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/XVideoEdit_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtOpenGLWidgets -isystem /usr/include/qt6/QtOpenGL -isystem /usr/include/opencv4 -g -std=gnu++17 -fno-direct-access-external-data -o CMakeFiles/XVideoEdit.dir/src/main.cpp.o -c /home/papillon/Documents/All_codes/qt_projects/XVideoEdit/src/main.cpp",
+  "file": "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/src/main.cpp",
+  "output": "CMakeFiles/XVideoEdit.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -I/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/XVideoEdit_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtOpenGLWidgets -isystem /usr/include/qt6/QtOpenGL -isystem /usr/include/opencv4 -g -std=gnu++17 -fno-direct-access-external-data -o CMakeFiles/XVideoEdit.dir/src/xvideoui.cpp.o -c /home/papillon/Documents/All_codes/qt_projects/XVideoEdit/src/xvideoui.cpp",
+  "file": "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/src/xvideoui.cpp",
+  "output": "CMakeFiles/XVideoEdit.dir/src/xvideoui.cpp.o"
+},
+{
+  "directory": "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -I/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/XVideoEdit_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtOpenGLWidgets -isystem /usr/include/qt6/QtOpenGL -isystem /usr/include/opencv4 -g -std=gnu++17 -fno-direct-access-external-data -o CMakeFiles/XVideoEdit.dir/src/xvideowidget.cpp.o -c /home/papillon/Documents/All_codes/qt_projects/XVideoEdit/src/xvideowidget.cpp",
+  "file": "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/src/xvideowidget.cpp",
+  "output": "CMakeFiles/XVideoEdit.dir/src/xvideowidget.cpp.o"
+},
+{
+  "directory": "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -I/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/XVideoEdit_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtOpenGLWidgets -isystem /usr/include/qt6/QtOpenGL -isystem /usr/include/opencv4 -g -std=gnu++17 -fno-direct-access-external-data -o CMakeFiles/XVideoEdit.dir/src/xvideothread.cpp.o -c /home/papillon/Documents/All_codes/qt_projects/XVideoEdit/src/xvideothread.cpp",
+  "file": "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/src/xvideothread.cpp",
+  "output": "CMakeFiles/XVideoEdit.dir/src/xvideothread.cpp.o"
+},
+{
+  "directory": "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -I/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/XVideoEdit_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtOpenGLWidgets -isystem /usr/include/qt6/QtOpenGL -isystem /usr/include/opencv4 -g -std=gnu++17 -fno-direct-access-external-data -o CMakeFiles/XVideoEdit.dir/src/XImagePro.cpp.o -c /home/papillon/Documents/All_codes/qt_projects/XVideoEdit/src/XImagePro.cpp",
+  "file": "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/src/XImagePro.cpp",
+  "output": "CMakeFiles/XVideoEdit.dir/src/XImagePro.cpp.o"
+},
+{
+  "directory": "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -I/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/XVideoEdit_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtOpenGLWidgets -isystem /usr/include/qt6/QtOpenGL -isystem /usr/include/opencv4 -g -std=gnu++17 -fno-direct-access-external-data -o CMakeFiles/XVideoEdit.dir/src/XFilter.cpp.o -c /home/papillon/Documents/All_codes/qt_projects/XVideoEdit/src/XFilter.cpp",
+  "file": "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/src/XFilter.cpp",
+  "output": "CMakeFiles/XVideoEdit.dir/src/XFilter.cpp.o"
+},
+{
+  "directory": "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -I/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/XVideoEdit_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtOpenGLWidgets -isystem /usr/include/qt6/QtOpenGL -isystem /usr/include/opencv4 -g -std=gnu++17 -fno-direct-access-external-data -o CMakeFiles/XVideoEdit.dir/src/XAudio.cpp.o -c /home/papillon/Documents/All_codes/qt_projects/XVideoEdit/src/XAudio.cpp",
+  "file": "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/src/XAudio.cpp",
+  "output": "CMakeFiles/XVideoEdit.dir/src/XAudio.cpp.o"
+},
+{
+  "directory": "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -I/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/XVideoEdit_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtOpenGLWidgets -isystem /usr/include/qt6/QtOpenGL -isystem /usr/include/opencv4 -g -std=gnu++17 -fno-direct-access-external-data -o CMakeFiles/XVideoEdit.dir/XVideoEdit_autogen/EWIEGA46WW/qrc_XVideoUI.cpp.o -c /home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/XVideoEdit_autogen/EWIEGA46WW/qrc_XVideoUI.cpp",
+  "file": "/home/papillon/Documents/All_codes/qt_projects/XVideoEdit/build/XVideoEdit_autogen/EWIEGA46WW/qrc_XVideoUI.cpp",
+  "output": "CMakeFiles/XVideoEdit.dir/XVideoEdit_autogen/EWIEGA46WW/qrc_XVideoUI.cpp.o"
+}
+]
