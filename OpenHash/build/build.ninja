@@ -190,7 +190,7 @@ build OpenHash_autogen/timestamp OpenHash_autogen/mocs_compilation.cpp | ${cmake
 #############################################
 # Phony custom command for CMakeFiles/OpenHash_autogen_timestamp_deps
 
-build CMakeFiles/OpenHash_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/OpenHash_autogen_timestamp_deps: phony /usr/bin/uic /usr/lib/libQt5Widgets.so.5.15.11 /usr/bin/moc
+build CMakeFiles/OpenHash_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/OpenHash_autogen_timestamp_deps: phony /usr/lib/libQt5Widgets.so.5.15.11 /usr/bin/moc /usr/bin/uic
 
 
 #############################################
