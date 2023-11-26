@@ -32,6 +32,8 @@ set(PROJECT_SOURCES
     code/include/Rule.h
     code/include/Engine.h
     code/include/Handler.h
+    code/include/Frame.h
+    code/include/RuleEdit.h
     
     
     # source
@@ -39,6 +41,8 @@ set(PROJECT_SOURCES
     code/source/Rule.cpp
     code/source/Engine.cpp
     code/source/Handler.cpp
+    code/source/Frame.cpp
+    code/source/RuleEdit.cpp
     code/source/main.cpp
 )
 
