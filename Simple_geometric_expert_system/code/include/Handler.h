@@ -2,7 +2,7 @@
  * @Author: PapillonAz 1065940593@qq.com
  * @Date: 2023-11-22 15:17:54
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-11-26 16:01:16
+ * @LastEditTime: 2023-12-01 22:10:39
  * @FilePath: /Simple_geometric_expert_system/code/include/Handler.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -88,7 +88,6 @@ public:
     cv::Mat src;
     std::vector<std::vector<cv::Point>> contours;
     std::vector<std::vector<ContourLine>>  contours_dict;
-    std::vector<ContourLine> contour_lines;
 };
 
 
@@ -207,13 +206,13 @@ bool isLengthEqual(std::vector<ContourLine> lines);
 bool isParallel(ContourLine l1, ContourLine l2);
 
 bool isVertical(ContourLine l1, ContourLine l2);
-void factLinesClosureNumber(std::vector<Fact> facts, std::vector<ContourLine> lines);
-void factLinesClosureEqual(std::vector<Fact> facts, std::vector<ContourLine> lines);
-void factLinesClosureParallel(std::vector<Fact> facts);
-void factAngleAcuteNumber(std::vector<Fact> facts);
-void factAngleRightNumber(std::vector<Fact> facts);
-void factAboutAngle(std::vector<Fact> facts, ContourLine l1, ContourLine l2);
-void factAboutlength(std::vector<Fact> facts, ContourLine l1, ContourLine l2);
+void factLinesClosureNumber(std::vector<Fact> &facts, std::vector<ContourLine> &lines);
+void factLinesClosureEqual(std::vector<Fact> &facts, std::vector<ContourLine> &lines);
+void factLinesClosureParallel(std::vector<Fact> &facts);
+void factAngleAcuteNumber(std::vector<Fact> &facts);
+void factAngleRightNumber(std::vector<Fact> &facts);
+void factAboutAngle(std::vector<Fact> &facts, ContourLine l1, ContourLine l2);
+void factAboutlength(std::vector<Fact> &facts, ContourLine l1, ContourLine l2);
 std::pair<std::vector<Fact>,std::vector<Fact>> factGenerate(std::vector<ContourLine> lines);
 
 

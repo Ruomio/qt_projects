@@ -2,7 +2,7 @@
  * @Author: PapillonAz 1065940593@qq.com
  * @Date: 2023-11-26 16:10:52
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-11-27 21:19:49
+ * @LastEditTime: 2023-12-01 22:28:05
  * @FilePath: /Simple_geometric_expert_system/code/include/Frame.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -94,6 +94,7 @@ private:
     QFileDialog *m_file_dialog = nullptr;
     QString image_path;
     QString shape_type;
+    int contour_num;
 
 public slots:
 
@@ -105,9 +106,9 @@ public slots:
 };
 
 
-void DrawLines(cv::Mat img, std::map<std::string, std::vector<Fact>> match_facts, int contour_num);
+void DrawLines(cv::Mat &img, std::map<std::string, std::vector<Fact>> &match_facts, int contour_num);
 
-void GetResult(std::vector<std::string> result);
+std::string GetResult(std::vector<std::string> result);
 
 std::string GetMatchedFacts(std::map<std::string, std::vector<Fact>> match_facts, int contour_num);
 

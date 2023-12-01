@@ -2,7 +2,7 @@
  * @Author: PapillonAz 1065940593@qq.com
  * @Date: 2023-11-22 15:18:01
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-11-26 16:02:52
+ * @LastEditTime: 2023-12-01 22:12:43
  * @FilePath: /Simple_geometric_expert_system/code/source/Handler.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -20,6 +20,8 @@
 
 Handler::Handler(std::string source) {
     src = cv::imread(source);
+    contours = getContours(this->src);
+    if(!contours.empty()) contours.erase(contours.begin());
 }
 
 Handler::~Handler() {
@@ -73,13 +75,13 @@ std::vector<std::vector<cv::Point>> Handler::getContours(cv::Mat img) {
     cv::findContours(threshold, contours, hierarchy, cv::RETR_TREE, cv::CHAIN_APPROX_SIMPLE);
 
     // contours
-    std::vector<std::vector<cv::Point>> approx(contours.size());
-    for(int i=0; i<contours.size(); i++){
-        cv::approxPolyDP(contours[i], approx[i], 0.01 * cv::arcLength(contours[i], true), true);
-        this->contours.push_back(approx[i]);
+    for(int i=1; i<contours.size(); i++){
+        std::vector<cv::Point> approx;
+        cv::approxPolyDP(contours[i], approx, 0.01 * cv::arcLength(contours[i], true), true);
+        contours[i] = approx;
     }
 
-    return this->contours;
+    return contours;
 }
 
 // void Handler::getLines() {
@@ -88,18 +90,19 @@ std::vector<std::vector<cv::Point>> Handler::getContours(cv::Mat img) {
 
 
 std::vector<ContourLine> Handler::generateLines(std::vector<cv::Point>  contour) {
+    std::cout << contour.size() << std::endl;
     std::vector<ContourLine> contour_lines;
-    for(int i=0; i<contours.size()-1; i++) {
-        contour_lines.push_back(ContourLine(cv::Point(contours[i][0].x, contours[i][0].y), cv::Point(contours[i+1][0].x, contours[i+1][0].y)));
+    for(int i=0; i<contour.size()-1; i++) {
+        contour_lines.push_back(  ContourLine(contour[i], contour[i+1])  );
     }
-    contour_lines.push_back(ContourLine(cv::Point(contours[contours.size()-1][0].x, contours[contours.size()-1][0].y), cv::Point(contours[0][0].x, contours[0][0].y)));
+    contour_lines.push_back( ContourLine(contour.back(), contour.front()) );
 
     return contour_lines;
 }
 
 void Handler::generateContour_dict() {
-    for(int i=0; i<contour_lines.size(); i++) {
-        this->contours_dict[i] = this->generateLines(this->contours[i]);
+    for(int i=0; i<contours.size(); i++) {
+        contours_dict.emplace_back(generateLines(this->contours[i]));
     }
 }
 
@@ -216,7 +219,7 @@ bool isVertical(ContourLine l1, ContourLine l2) {
     return false;
 }
 
-void factLinesClosureNumber(std::vector<Fact> facts, std::vector<ContourLine> lines) {
+void factLinesClosureNumber(std::vector<Fact> &facts, std::vector<ContourLine> &lines) {
     switch (lines.size()) {
         case 3: 
             if(isClosure(lines)) 
@@ -240,11 +243,11 @@ void factLinesClosureNumber(std::vector<Fact> facts, std::vector<ContourLine> li
     }
 }
 
-void factLinesClosureEqual(std::vector<Fact> facts, std::vector<ContourLine> lines) {
+void factLinesClosureEqual(std::vector<Fact> &facts, std::vector<ContourLine> &lines) {
     if(isLengthEqual(lines)) 
         facts.push_back(Fact("all equal", lines));
 }
-void factLinesClosureParallel(std::vector<Fact> facts) {
+void factLinesClosureParallel(std::vector<Fact> &facts) {
     int count = 0;
     std::vector<ContourLine> lines;
     std::vector<Fact> del;
@@ -271,7 +274,7 @@ void factLinesClosureParallel(std::vector<Fact> facts) {
         facts.push_back(Fact(std::to_string(count)+" pairs of parallel lines", lines));
     }
 }
-void factAngleAcuteNumber(std::vector<Fact> facts) {
+void factAngleAcuteNumber(std::vector<Fact> &facts) {
     int count = 0;
     std::vector<ContourLine> lines;
     // std::vector<Fact> del;
@@ -297,7 +300,7 @@ void factAngleAcuteNumber(std::vector<Fact> facts) {
         facts.push_back(Fact(std::to_string(count)+" angle is acute angle", lines));
     }
 }
-void factAngleRightNumber(std::vector<Fact> facts) {
+void factAngleRightNumber(std::vector<Fact> &facts) {
     int count = 0;
     std::vector<ContourLine> lines;
     for(auto fact : facts) {
@@ -312,7 +315,7 @@ void factAngleRightNumber(std::vector<Fact> facts) {
         facts.push_back(Fact(std::to_string(count)+" angle is right angle", lines));
     }
 }
-void factAboutAngle(std::vector<Fact> facts, ContourLine l1, ContourLine l2) {
+void factAboutAngle(std::vector<Fact> &facts, ContourLine l1, ContourLine l2) {
     if(isParallel(l1, l2)) {
         facts.push_back(Fact("2 lines are parallel",{l1,l2}));
     }
@@ -326,7 +329,7 @@ void factAboutAngle(std::vector<Fact> facts, ContourLine l1, ContourLine l2) {
         facts.push_back(Fact("1 angle is obtuse angle",{l1,l2}));
     }
 }
-void factAboutlength(std::vector<Fact> facts, ContourLine l1, ContourLine l2) {
+void factAboutlength(std::vector<Fact> &facts, ContourLine l1, ContourLine l2) {
     if(isLengthEqual(l1,l2)) {
         facts.push_back(Fact("2 lines are equal",{l1,l2}));
     }
@@ -465,14 +468,14 @@ std::string ContourFact::toString() {
 /***************************************************************************************/
 FactGenerator::FactGenerator(std::vector<std::vector<ContourLine>>  contours_dict) : contours_dict(contours_dict){
 
-    file.open("../fact/fact.txt", std::ios::app);
+    file.open("../facts/facts.txt", std::ios::app);
     if(!file.is_open()) {
         std::cout << "FactGenerator open file error" << std::endl;
     }
 }
 
 FactGenerator::~FactGenerator() {
-    if(!file) {
+    if(file.is_open()) {
         file.close();
         std::cout << "file close" << std::endl;
     }

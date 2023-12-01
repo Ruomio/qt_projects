@@ -2,7 +2,7 @@
  * @Author: PapillonAz 1065940593@qq.com
  * @Date: 2023-11-22 15:03:27
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-11-27 21:20:53
+ * @LastEditTime: 2023-12-01 22:06:24
  * @FilePath: /Simple_geometric_expert_system/code/include/Engine.h
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -60,7 +60,8 @@ Rule generateRule(std::string rule);
 std::vector<Rule> separateRules(std::string rules);
 std::vector<Rule> readRule(std::string rule_file);
 Engine setupEngine(std::string img_source);
-void setGoal(Engine e, std::string goal);
+void setGoal(Engine &e, std::string goal);
 std::tuple<std::vector<std::string>, std::map<std::string, std::vector<Fact>>, std::map<std::string, std::vector<Rule>>> mainRun(Engine e);
+std::vector<std::string> splitString(const std::string& input, char delimiter);
 
 #endif

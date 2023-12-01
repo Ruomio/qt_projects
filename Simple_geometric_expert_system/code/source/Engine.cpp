@@ -2,7 +2,7 @@
  * @Author: PapillonAz 1065940593@qq.com
  * @Date: 2023-11-22 15:39:16
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-11-26 16:07:22
+ * @LastEditTime: 2023-12-02 00:07:26
  * @FilePath: /Simple_geometric_expert_system/code/source/Engine.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -12,7 +12,7 @@
 #include <vector>
 
 std::regex re_a_rule("(\\{.*?\\})");
-std::regex re_if_part("^\\{IF:\\s+(\\[.*?\\])");
+std::regex re_if_part("\\{IF:\\s+(\\[.*?\\])");
 std::regex re_then_part("THEN:\\s+(\'.*?\')");
 std::regex re_description_part("DESCRIPTION:\\s+(\'.*?\')");
 
@@ -90,7 +90,8 @@ bool Engine::hitConsequent(std::string cons, int contour_index) {
 }
 
 void Engine::goal(std::string target) {
-    target = target;
+    // std::cout << target << std::endl;
+    this->target = target;
     clearConditionStack();
     match_facts.clear();
     hit_rules.clear();
@@ -147,27 +148,34 @@ std::string Engine::toString() {
 
 
 Rule generateRule(std::string rule) {
-    /* if_part = ''
-    exec('if_part = ' + re_if_part.findall(rule)[0])
-    then_part = re_then_part.findall(rule)[0]
-    description_part = re_description_part.findall(rule)[0]
-    return Rule(if_part, then_part.strip('"\''), description_part.strip('"\'')) */
+
+    // std::cout << rule << std::endl;
 
     std::vector<std::string> if_part;               // ? 
-    std::string then_part, description_part;
+    std::string single_if, then_part, description_part;
     std::smatch if_match, then_match, description_match;
     
-    std::regex_search(rule, if_match, re_if_part);
-    if (if_match.size() >= 0) { 
-        if_part[0] += if_match[0].str();
+    bool ret1 = std::regex_search(rule, if_match, re_if_part);
+    if (ret1) { 
+        single_if = std::string(if_match[1]);
+        single_if.erase(std::remove(single_if.begin(), single_if.end(), '\''), single_if.end());
+        single_if.erase(std::remove(single_if.begin(), single_if.end(), '['), single_if.end());
+        single_if.erase(std::remove(single_if.begin(), single_if.end(), ']'), single_if.end());
+        // std::cout << single_if << std::endl;
+        if_part = splitString(single_if, ',');
+
     }
-    std::regex_search(rule, then_match, re_then_part);
-    if (then_match.size() >= 0) {
-        then_part = then_match[0].str();
+    bool ret2 = std::regex_search(rule, then_match, re_then_part);
+    if (ret2) {
+        then_part = std::string(then_match[1]);
+        then_part.erase(std::remove(then_part.begin(), then_part.end(), '\''), then_part.end());
+        // std::cout << then_part << std::endl;
     }
-    std::regex_search(rule, description_match, re_description_part);
-    if(description_match.size() >= 0) {
-        description_part = description_match[0].str();
+    bool ret3 = std::regex_search(rule, description_match, re_description_part);
+    if(ret3) {
+        description_part = std::string(description_match[1]);
+        description_part.erase(std::remove(description_part.begin(), description_part.end(), '\''), description_part.end());
+        // std::cout << description_part << std::endl;
     }
 
     return Rule(if_part, then_part, description_part);
@@ -175,25 +183,37 @@ Rule generateRule(std::string rule) {
 
 std::vector<Rule> separateRules(std::string rules) {
     std::smatch re_a_match;
-    std::vector<std::string> rule_group;
-    std::regex_match(rules, re_a_match, re_a_rule);
-    for(int i = 0; i < re_a_match.size(); i++)  {
-        rule_group.push_back(re_a_match[i].str());
+    std::vector<std::string> all_rules;
+
+    // std::cout << rules << "\n------------------" << std::endl;
+    auto it = rules.cbegin();
+    while( std::regex_search(it, rules.cend(), re_a_match, re_a_rule)) {
+        // std::cout << re_a_match[1] << std::endl;
+        all_rules.push_back(re_a_match[1]);
+        it = re_a_match[0].second;                  // 避免重复匹配
     }
+
+
     std::vector<Rule> res;
-    for(std::string rule : rule_group) {
+    for(auto rule : all_rules) {
         res.push_back(generateRule(rule));
     }
+    
     return res;
 }
 
 std::vector<Rule> readRule(std::string rule_file) {
     std::string res;
     std::string line;
-    std::ifstream file("../rules/" + rule_file);
-    while(file >> line) {
+    std::ifstream file((std::string("../rules/") + rule_file));
+    if(!file.is_open()) {
+        std::cout << "Error opening rules file" << std::endl;
+        exit(1);
+    }
+    while( std::getline(file, line)/* file >> line */) {
         res += line;
     }
+    file.close();
     return separateRules(res);
 }
 
@@ -203,12 +223,13 @@ Engine setupEngine(std::string img_source) {
     FactGenerator generator = FactGenerator(handler.contours_dict);
     generator.generateFact();
     std::vector<Rule> rules = readRule("rules.txt"); 
+    // std::cout << "Problem Line!" << std::endl;
     Engine e = Engine(rules, generator.handled_facts);
 
     return e;
 }
 
-void setGoal(Engine e, std::string goal) {
+void setGoal(Engine &e, std::string goal) {
     e.goal(goal);
 }
 
@@ -228,3 +249,20 @@ std::tuple<std::vector<std::string>, std::map<std::string, std::vector<Fact>>, s
     return {results, e.match_facts, e.hit_rules};
 }
 
+
+std::vector<std::string> splitString(const std::string& input, char delimiter) {
+    std::vector<std::string> result;
+    std::string::size_type start = 0;
+    std::string::size_type end = input.find(delimiter);
+
+    while (end != std::string::npos) {
+        result.push_back(input.substr(start, end - start));
+        start = end + 1;
+        if(input[start] == ' ') start++;
+        end = input.find(delimiter, start);
+    }
+
+    result.push_back(input.substr(start));
+
+    return result;
+}
