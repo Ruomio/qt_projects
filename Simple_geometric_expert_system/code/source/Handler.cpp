@@ -2,7 +2,7 @@
  * @Author: PapillonAz 1065940593@qq.com
  * @Date: 2023-11-22 15:18:01
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-12-01 22:12:43
+ * @LastEditTime: 2023-12-02 16:35:30
  * @FilePath: /Simple_geometric_expert_system/code/source/Handler.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -170,8 +170,10 @@ bool isClosure(std::vector<ContourLine> lines) {
 // 是否相交， 不相交返回 Point{-2,-2}  平行返回{-1, -1}
 cv::Point2f getMeetingPoint(ContourLine l1, ContourLine l2) {    
     // 平行
-    if(std::abs(l1.angle - l2.angle) <= 1)  return cv::Point2f(-1,-1); 
-
+    if((std::abs(l1.angle - l2.angle) <= 1) 
+        || std::abs(l1.angle - l2.angle) <= 181 && std::abs(l1.angle - l2.angle) >= 179) {
+        return cv::Point2f(-1,-1); 
+    }
     double k1, k2;
     k1 = (double)(l1.p2.y - l1.p1.y) / (double)(l1.p2.x - l1.p1.x); //求出l1斜率
     k2 = (double)(l2.p2.y - l2.p1.y) / (double)(l2.p2.x - l2.p1.x); //求出l2斜率
@@ -245,7 +247,7 @@ void factLinesClosureNumber(std::vector<Fact> &facts, std::vector<ContourLine> &
 
 void factLinesClosureEqual(std::vector<Fact> &facts, std::vector<ContourLine> &lines) {
     if(isLengthEqual(lines)) 
-        facts.push_back(Fact("all equal", lines));
+        facts.push_back(Fact("lines are all equal", lines));
 }
 void factLinesClosureParallel(std::vector<Fact> &facts) {
     int count = 0;
@@ -262,13 +264,13 @@ void factLinesClosureParallel(std::vector<Fact> &facts) {
     }
     // 删除facts 中 与del相同的成员
 
-    for(std::vector<Fact>::iterator it = del.begin(); it != del.end(); it++){
-        for(auto it2 = facts.begin(); it2 != facts.end(); it2++){
-            if( *it == *it2) {
-                facts.erase(it2);
-            }
-        }
-    }
+    // for(std::vector<Fact>::iterator it = del.begin(); it != del.end(); it++){
+    //     for(auto it2 = facts.begin(); it2 != facts.end(); it2++){
+    //         if( *it == *it2) {
+    //             facts.erase(it2);
+    //         }
+    //     }
+    // }
     
     if(count) {
         facts.push_back(Fact(std::to_string(count)+" pairs of parallel lines", lines));
@@ -297,7 +299,7 @@ void factAngleAcuteNumber(std::vector<Fact> &facts) {
     // }
     
     if(count) {
-        facts.push_back(Fact(std::to_string(count)+" angle is acute angle", lines));
+        facts.push_back(Fact(std::to_string(count)+" angles are acute angle", lines));
     }
 }
 void factAngleRightNumber(std::vector<Fact> &facts) {
@@ -312,7 +314,7 @@ void factAngleRightNumber(std::vector<Fact> &facts) {
         }
     }
     if (count) {
-        facts.push_back(Fact(std::to_string(count)+" angle is right angle", lines));
+        facts.push_back(Fact(std::to_string(count)+" angles are right angle", lines));
     }
 }
 void factAboutAngle(std::vector<Fact> &facts, ContourLine l1, ContourLine l2) {
@@ -337,7 +339,7 @@ void factAboutlength(std::vector<Fact> &facts, ContourLine l1, ContourLine l2) {
 std::pair<std::vector<Fact>,std::vector<Fact>> factGenerate(std::vector<ContourLine> lines) {
     std::vector<Fact> line_facts;
     std::vector<Fact> angle_facts;
-    for(int i=0;i<lines.size();i++) {
+    for(int i=0;i<lines.size()-1;i++) {
         for(int j=i+1;j<lines.size();j++) {
             factAboutlength(line_facts, lines[i], lines[j]);
             factAboutAngle(angle_facts, lines[i], lines[j]);   

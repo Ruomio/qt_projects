@@ -2,7 +2,7 @@
  * @Author: PapillonAz 1065940593@qq.com
  * @Date: 2023-11-22 15:39:16
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-12-02 00:07:26
+ * @LastEditTime: 2023-12-02 15:59:39
  * @FilePath: /Simple_geometric_expert_system/code/source/Engine.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -52,7 +52,17 @@ bool Engine::isConditionStackEmpty() {
 }
 
 bool Engine::matchFacts(std::string ant, int contour_index) {
+    std::cout << ant << std::endl;
+
     ContourFact facts = this->facts_library["Contour" + std::to_string(contour_index)];
+
+    for(auto fact : facts.line_facts) {
+        std::cout << fact.toString() << std::endl;
+    }
+    for(auto fact : facts.angle_facts) {
+        std::cout << fact.toString() << std::endl;
+    }
+
     bool matched = false;
     for(auto fact : facts.line_facts) {
         if( ant == fact.fact ) {

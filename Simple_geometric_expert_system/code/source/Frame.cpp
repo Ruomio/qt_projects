@@ -2,7 +2,7 @@
  * @Author: PapillonAz 1065940593@qq.com
  * @Date: 2023-11-26 16:11:01
  * @LastEditors: PapillonAz 1065940593@qq.com
- * @LastEditTime: 2023-12-01 22:59:17
+ * @LastEditTime: 2023-12-02 17:32:28
  * @FilePath: /Simple_geometric_expert_system/code/source/Frame.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -90,17 +90,19 @@ void Frame::InitWindow() {
     QTreeWidgetItem *isosceles_triangle_shape = new QTreeWidgetItem(triangle_shape);
     isosceles_triangle_shape->setText(0, "Isosceles Triangle");
     QTreeWidgetItem *acute_isosceles_triangle_shape = new QTreeWidgetItem(isosceles_triangle_shape);
-    acute_isosceles_triangle_shape->setText(0, "Acute Isosceles Triangle");
+    acute_isosceles_triangle_shape->setText(0, "Acute and Isosceles Triangle");
     QTreeWidgetItem *right_isosceles_triangle_shape = new QTreeWidgetItem(isosceles_triangle_shape);
-    right_isosceles_triangle_shape->setText(0, "Right Isosceles Triangle");
+    right_isosceles_triangle_shape->setText(0, "Right and Isosceles Triangle");
     QTreeWidgetItem *obtuse_isosceles_triangle_shape = new QTreeWidgetItem(isosceles_triangle_shape);
-    obtuse_isosceles_triangle_shape->setText(0, "Obtuse Isosceles Triangle");
+    obtuse_isosceles_triangle_shape->setText(0, "Obtuse and Isosceles Triangle");
     QTreeWidgetItem *equilateral_triangle_shape = new QTreeWidgetItem(triangle_shape);
     equilateral_triangle_shape->setText(0, "Equilateral Triangle");
 
 
     QTreeWidgetItem *quadrilateral_shape = new QTreeWidgetItem(all_shape);
     quadrilateral_shape->setText(0, "Quadrilateral");
+    QTreeWidgetItem *rhombus_shape = new QTreeWidgetItem(quadrilateral_shape);
+    rhombus_shape->setText(0, "Rhombus");
     QTreeWidgetItem *parallelogram_shape = new QTreeWidgetItem(quadrilateral_shape);
     parallelogram_shape->setText(0, "Parallelogram");
     QTreeWidgetItem *rectangle_shape = new QTreeWidgetItem(parallelogram_shape);
@@ -108,11 +110,11 @@ void Frame::InitWindow() {
     QTreeWidgetItem *square_shape = new QTreeWidgetItem(parallelogram_shape);
     square_shape->setText(0, "Square");
     QTreeWidgetItem *trapezium = new QTreeWidgetItem(quadrilateral_shape);
-    trapezium->setText(0, "Trapezium");
+    trapezium->setText(0, "Trapezoid");
     QTreeWidgetItem *isosceles_trapezium_shape = new QTreeWidgetItem(trapezium);
-    isosceles_trapezium_shape->setText(0, "Isosceles Trapezium");
+    isosceles_trapezium_shape->setText(0, "Isosceles Trapezoid");
     QTreeWidgetItem *right_trapezium_shape = new QTreeWidgetItem(trapezium);
-    right_trapezium_shape->setText(0, "Right Trapezium");
+    right_trapezium_shape->setText(0, "Right Trapezoid");
 
 
     QTreeWidgetItem *pentagon_shape = new QTreeWidgetItem(all_shape);
@@ -173,6 +175,7 @@ void Frame::OpenSourceBtnSlot() {
     }
 
     // std::cout << image_path.toStdString() << std::endl;
+    m_scene_source->clear();
     m_scene_source->addPixmap(image_path);
     m_view_source->fitInView(m_scene_source->sceneRect(), Qt::KeepAspectRatio);
     m_view_source->show();
@@ -267,30 +270,44 @@ void Frame::ShapeChosen() {
         QMessageBox::information(NULL, "Title", QStringLiteral("请选择具体的图形"), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
         return;
     }
-    std::string chosen_shape = "the shape is " + shape_type.toStdString();
+    std::string chosen_shape = "the shape is " + shape_type.toLower().toStdString();
+
+    std::cout << "chosen_shape: " << chosen_shape << "\n";
 
     setGoal(engine, chosen_shape);
-    // std::cout << engine.target << "\n";
+
+    /* for(int i=0; i<engine.rule_library.size(); i++) {
+        std::cout << engine.rule_library[i].toString() << "\n";
+    }
+    for(auto cntline : engine.facts_library) {
+        std::cout << cntline.first + "\n" + cntline.second.toString() << "\n";
+    } */
+
+
     std::tuple<std::vector<std::string>, std::map<std::string, std::vector<Fact>>, std::map<std::string, std::vector<Rule>>> tuple_res = mainRun(engine);
     
-    std::cout << std::get<0>(tuple_res).size() << std::get<1>(tuple_res).size() << std::get<2>(tuple_res).size() << std::endl;
+    // std::cout << std::get<0>(tuple_res).size() << std::get<1>(tuple_res).size() << std::get<2>(tuple_res).size() << std::endl;
     cv::Mat source_img = cv::imread(image_path.toStdString());
-    std::cout << source_img.size() << source_img.type() << std::endl;
+    // std::cout << source_img.size() << source_img.type() << std::endl;
 
     cv::Mat detection_image = cv::Mat::zeros(source_img.size(), source_img.type());
-    std::cout << detection_image.size() << detection_image.type() << std::endl;
+    // std::cout << detection_image.size() << detection_image.type() << std::endl;
 
     DrawLines(detection_image, std::get<1>(tuple_res), contour_num);
     cv::imwrite("../test_images/detection.png", detection_image, {cv::IMWRITE_PNG_COMPRESSION, 0});
-    cv::Mat tem = cv::imread("../test_images/detection.png");
-    std::cout << tem.size() << tem.type() << std::endl;
+    // cv::Mat tem = cv::imread("../test_images/detection.png");
+    // std::cout << tem.size() << tem.type() << std::endl;
 
+    m_scene_detection->clear();
     m_scene_detection->addPixmap(QStringLiteral("../test_images/detection.png"));
+    m_view_detection->fitInView(m_scene_detection->sceneRect(), Qt::KeepAspectRatio);
+    m_view_detection->show();
 
     m_dection_result_text->clear();
     m_dection_result_text->appendPlainText(QString::fromStdString(GetResult(std::get<0>(tuple_res))));
 
     m_matched_facts_text->clear();
+    m_matched_facts_text->appendPlainText(QString::fromStdString(GetMatchedFacts(std::get<1>(tuple_res), contour_num)));
 
     m_hit_rules_text->clear();
     m_hit_rules_text->appendPlainText(QString::fromStdString(GetHitRules(std::get<2>(tuple_res), contour_num)));
